@@ -19,8 +19,8 @@ public class Città extends MetaTuristica {
 	@JoinColumn(name = "destinazione_id")
 	private Destinazione destinazione;
 
-	public Città(String nome, String descrizione, Destinazione destinazione) {
-		super(nome, descrizione);
+	public Città(String nome, String descrizione, String urlImmagine, Destinazione destinazione) {
+		super(nome, descrizione, urlImmagine);
 		this.destinazione = destinazione;
 	}
 

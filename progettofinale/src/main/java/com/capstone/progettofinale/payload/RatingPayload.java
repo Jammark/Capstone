@@ -1,24 +1,19 @@
 package com.capstone.progettofinale.payload;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-public class UserResponsePayload {
+public class RatingPayload {
 
+	private int rate;
 	private Long id;
+	private AlloggioPayload alloggio;
+	private UserResponsePayload user;
 
-	private String username;
-	private String nome;
-	private String cognome;
-	private LocalDate dataDiNascita;
-
-	private String ruolo;
 }

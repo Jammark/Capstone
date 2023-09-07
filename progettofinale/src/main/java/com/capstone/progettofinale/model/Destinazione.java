@@ -1,7 +1,11 @@
 package com.capstone.progettofinale.model;
 
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +23,12 @@ public class Destinazione extends MetaTuristica {
 	@Column(name = "contenuto_secondario")
 	private String contenutoSecondario;
 
-	public Destinazione(String nome, String descrizione, String contenutoPrincipale, String contenutoSecondario) {
-		super(nome, descrizione);
+	@OneToMany(mappedBy = "destinazione", cascade = CascadeType.ALL)
+	private Set<Città> città;
+
+	public Destinazione(String nome, String descrizione, String urlImmagine, String contenutoPrincipale,
+			String contenutoSecondario) {
+		super(nome, descrizione, urlImmagine);
 		this.contenutoPrincipale = contenutoPrincipale;
 		this.contenutoSecondario = contenutoSecondario;
 	}

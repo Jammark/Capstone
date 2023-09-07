@@ -46,8 +46,14 @@ public class Prenotazione {
 	@JoinColumn(name = "trasporto_id")
 	private Trasporto trasporto;
 
+	@Column(precision = 2)
+	private double prezzo;
+
+	@Column(name = "num_posti")
+	private int numeroPosti;
+
 	public Prenotazione(LocalDate data, int numeroGiorni, MetaTuristica meta, User user, Alloggio alloggio,
-			Trasporto trasporto) {
+			Trasporto trasporto, int numeroPosti) {
 		super();
 		this.data = data;
 		this.numeroGiorni = numeroGiorni;
@@ -55,6 +61,7 @@ public class Prenotazione {
 		this.user = user;
 		this.alloggio = alloggio;
 		this.trasporto = trasporto;
+		this.numeroPosti = numeroPosti;
 	}
 
 }

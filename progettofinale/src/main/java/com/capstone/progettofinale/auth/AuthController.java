@@ -61,7 +61,8 @@ public class AuthController {
 
 			// 3. Se le credenziali sono OK --> genero un JWT e lo invio come risposta
 			String token = jwtTools.createToken(user);
-			return new LoginSuccessfullPayload(token, new UserResponsePayload(user.getUsername(), user.getNome(),
+			return new LoginSuccessfullPayload(token, new UserResponsePayload(user.getId(), user.getUsername(),
+					user.getNome(),
 					user.getCognome(), user.getDataDiNascita(), user.getRuolo().name()));
 
 		} else {

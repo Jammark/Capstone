@@ -27,11 +27,14 @@ public abstract class MetaTuristica {
 
 	private String nome;
 	private String descrizione;
+	@Column(name = "url_immagine")
+	private String urlImmagine;
 
-	public MetaTuristica(String nome, String descrizione) {
+	public MetaTuristica(String nome, String descrizione, String urlImmagine) {
 		super();
 		this.nome = nome;
 		this.descrizione = descrizione;
+		this.urlImmagine = urlImmagine;
 	}
 
 }

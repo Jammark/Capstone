@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,10 @@ public abstract class Stazione {
 	private String nome;
 	private String località;
 	private String sigla;
+
+	@ManyToOne
+	@JoinColumn(name = "città_id")
+	private Città città;
 
 	public Stazione(String nome, String località, String sigla) {
 		super();

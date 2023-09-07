@@ -41,4 +41,13 @@ public class Acquisto {
 	@ManyToOne
 	@JoinColumn(name = "utente_id")
 	private User utente;
+
+	public Acquisto(double prezzo, LocalDate data, Prenotazione prenotazione, User utente) {
+		super();
+		this.prezzo = prezzo;
+		this.data = data;
+		this.prenotazione = prenotazione;
+		this.utente = utente;
+	}
+
 }

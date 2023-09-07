@@ -25,7 +25,7 @@ public abstract class Trasporto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "stazione_id")
+	@Column(name = "trasporto_id")
 	private Long id;
 
 	private String nome;
