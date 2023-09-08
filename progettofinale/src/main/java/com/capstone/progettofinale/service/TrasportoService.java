@@ -1,6 +1,7 @@
 package com.capstone.progettofinale.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,33 +52,40 @@ public class TrasportoService {
 		return this.tRepo.findAll();
 	}
 
-	public Volo saveVolo(Volo v) {
+	public Volo saveVolo(VoloPayload vp) {
+		Volo v = new Volo(vp.getNome(), vp.getDescrizione(), vp.getDurata(), vp.getDataPartenza(), vp.getDataArrivo(),
+				vp.getPostiDisponibili(), 0, vp.getPrezzo(), vp.getCompagnia(),
+				sSrv.findAereoportoById(vp.getPartenzaId()), sSrv.findAereoportoById(vp.getArrivoId()),
+				Optional.ofNullable(vp.getStopId()).map(val -> sSrv.findAereoportoById(val)).orElse(null));
 		return this.vRepo.save(v);
 	}
 
-	public Tratta saveTratta(Tratta t) {
+	public Tratta saveTratta(TrattaPayload tp) {
+		Tratta t = new Tratta(tp.getNome(), tp.getDescrizione(), tp.getDurata(), tp.getDataPartenza(),
+				tp.getDataArrivo(), tp.getPostiDisponibili(), 0, tp.getPrezzo(), tp.getNomeAzienda(),
+				sSrv.findStazionePulmanById(tp.getPartenzaId()), sSrv.findStazionePulmanById(tp.getArrivoId()));
 		return this.tRepo.save(t);
 	}
 
-	public void deleteVolo(VoloPayload vp) {
-		if (vp.getId() != null) {
-			Volo v = this.findVoloById(vp.getId());
+	public void deleteVolo(Long id) {
+		if (id != null) {
+			Volo v = this.findVoloById(id);
 			this.vRepo.delete(v);
 		} else {
-			throw new IllegalArgumentException("id volo non valido: " + vp.getId());
+			throw new IllegalArgumentException("id volo non valido: " + id);
 		}
 	}
 
-	public void deleteTratta(TrattaPayload tp) {
-		if (tp.getId() != null) {
-			Tratta t = this.findTrattaById(tp.getId());
+	public void deleteTratta(Long id) {
+		if (id != null) {
+			Tratta t = this.findTrattaById(id);
 			this.tRepo.delete(t);
 		} else {
-			throw new IllegalArgumentException("id stazione non valido: " + tp.getId());
+			throw new IllegalArgumentException("id stazione non valido: " + id);
 		}
 	}
 
-	public Volo updateAereoporto(VoloPayload ap) {
+	public Volo updateVolo(VoloPayload ap) {
 		if (ap.getId() != null) {
 			Volo a = this.findVoloById(ap.getId());
 			setFields(a, ap);

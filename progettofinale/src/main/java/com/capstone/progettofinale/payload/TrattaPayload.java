@@ -1,5 +1,9 @@
 package com.capstone.progettofinale.payload;
 
+import java.util.Optional;
+
+import com.capstone.progettofinale.model.Tratta;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,5 +17,11 @@ public class TrattaPayload extends TrasportoPayload {
 
 	private String nomeAzienda;
 	private Long partenzaId, arrivoId;
+
+	public TrattaPayload(Tratta t) {
+		this.nomeAzienda = t.getAziendaDiTrasporto();
+		this.partenzaId = Optional.ofNullable(t.getPartenza()).orElse(null).getId();
+		this.arrivoId = Optional.ofNullable(t.getArrivo()).orElse(null).getId();
+	}
 
 }

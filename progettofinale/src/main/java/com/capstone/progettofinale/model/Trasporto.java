@@ -31,7 +31,7 @@ public abstract class Trasporto {
 	private String nome;
 	private String descrizione;
 
-	@Column(columnDefinition = "TIME NOT NULL")
+	@Column(columnDefinition = "TIME")
 	private LocalTime durata;
 
 	@Column(name = "data_partenza")

@@ -2,6 +2,8 @@ package com.capstone.progettofinale.payload;
 
 import java.time.LocalDate;
 
+import com.capstone.progettofinale.model.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +23,12 @@ public class UserResponsePayload {
 	private LocalDate dataDiNascita;
 
 	private String ruolo;
+
+	public UserResponsePayload(User u) {
+		this.id = u.getId();
+		this.username = u.getUsername();
+		this.nome = u.getNome();
+		this.cognome = u.getCognome();
+		this.dataDiNascita = u.getDataDiNascita();
+	}
 }

@@ -1,6 +1,7 @@
 package com.capstone.progettofinale.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import com.capstone.progettofinale.repository.AppartamentoRepository;
 import com.capstone.progettofinale.repository.HotelRepository;
 
 @Service
-public class AlloggioService {
+public class AlloggioService extends AbstractService {
 
 	@Autowired
 	private HotelRepository hRepo;
@@ -28,6 +29,10 @@ public class AlloggioService {
 
 	@Autowired
 	private MetaService mSrv;
+
+	public AlloggioService() {
+		super("alloggi");
+	}
 
 	public Alloggio findById(Long id) {
 		return this.repo.findById(id).orElseThrow(() -> new IllegalArgumentException("Id alloggio non valido: " + id));
@@ -53,12 +58,31 @@ public class AlloggioService {
 		hRepo.delete(this.findHotelById(id));
 	}
 
-	public Hotel saveHotel(Hotel c) {
-		return this.hRepo.save(c);
+	public void deleteAppartamento(Long id) {
+		aRepo.delete(this.findAppartamentoById(id));
 	}
 
-	public Appartamento saveAppartamento(Appartamento d) {
-		return this.aRepo.save(d);
+	public Hotel saveHotel(HotelPayload hp) {
+		Hotel h = new Hotel(hp.getNome(), hp.getDescrizione(), hp.getPrezzo(), mSrv.findById(hp.getMetaId()),
+				hp.getNumStelle(), hp.getUrlImmagine(), hp.getNumSingole(), hp.getNumDoppie());
+		if (h.getUrlImmagine() != null && !h.getUrlImmagine().isEmpty()) {
+			String path = h.getNome() + ".jpg";
+			storeImg(h.getUrlImmagine(), path);
+			h.setUrlImmagine(path);
+		}
+		return this.hRepo.save(h);
+	}
+
+
+	public Appartamento saveAppartamento(AppartamentoPayload ap) {
+		Appartamento a = new Appartamento(ap.getNome(), ap.getDescrizione(), ap.getPrezzo(),
+				mSrv.findById(ap.getMetaId()), ap.getCapienza(), ap.getUrlImmagine());
+		if (a.getUrlImmagine() != null && !a.getUrlImmagine().isEmpty()) {
+			String path = a.getNome() + ".jpg";
+			storeImg(a.getUrlImmagine(), path);
+			a.setUrlImmagine(path);
+		}
+		return this.aRepo.save(a);
 	}
 
 	public List<Hotel> findHotelByMeta(Long id) {
@@ -71,32 +95,38 @@ public class AlloggioService {
 
 	public Hotel updateHotel(HotelPayload hp) {
 		Hotel found = this.findHotelById(hp.getId());
-		found.setDescrizione(hp.getDescrizione());
-		found.setNome(hp.getNome());
-		found.setStelle(hp.getNumStelle());
-		found.setPrezzo(hp.getPrezzo());
-		found.setUrlImmagine(hp.getUrlImmagine());
-		if (hp.getMeta() != null) {
-			found.setMeta(this.mSrv.findById(hp.getMeta().getId()));
-		} else {
-			throw new IllegalArgumentException("campo meta non valido nel body: " + hp);
+		found.setDescrizione(Optional.ofNullable(hp.getDescrizione()).orElse(found.getDescrizione()));
+		found.setNome(Optional.ofNullable(hp.getNome()).orElse(found.getNome()));
+		found.setStelle(Optional.ofNullable(hp.getNumStelle()).orElse(found.getStelle()));
+		found.setPrezzo(Optional.ofNullable(hp.getPrezzo()).orElse(found.getPrezzo()));
+		found.setUrlImmagine(Optional.ofNullable(hp.getUrlImmagine()).orElse(found.getUrlImmagine()));
+		if (found.getUrlImmagine() != null && !found.getUrlImmagine().isEmpty()) {
+			String path = found.getNome() + ".jpg";
+			storeImg(found.getUrlImmagine(), path);
+			found.setUrlImmagine(path);
 		}
-		return this.saveHotel(found);
+		if (hp.getMetaId() != null) {
+			found.setMeta(this.mSrv.findById(hp.getMetaId()));
+		}
+		return this.hRepo.save(found);
 	}
 
 	public Appartamento updateAppartamento(AppartamentoPayload ap) {
 		Appartamento found = this.findAppartamentoById(ap.getId());
-		found.setDescrizione(ap.getDescrizione());
-		found.setNome(ap.getNome());
-		found.setCapienza(ap.getCapienza());
-		found.setPrezzo(ap.getPrezzo());
-		found.setUrlImmagine(ap.getUrlImmagine());
-		if (ap.getMeta() != null) {
-			found.setMeta(this.mSrv.findById(ap.getMeta().getId()));
-		} else {
-			throw new IllegalArgumentException("campo meta non valido nel body: " + ap);
+		found.setDescrizione(Optional.ofNullable(ap.getDescrizione()).orElse(found.getDescrizione()));
+		found.setNome(Optional.ofNullable(ap.getNome()).orElse(found.getNome()));
+		found.setCapienza(Optional.ofNullable(ap.getCapienza()).orElse(found.getCapienza()));
+		found.setPrezzo(Optional.ofNullable(ap.getPrezzo()).orElse(found.getPrezzo()));
+		found.setUrlImmagine(Optional.ofNullable(ap.getUrlImmagine()).orElse(found.getUrlImmagine()));
+		if (found.getUrlImmagine() != null && !found.getUrlImmagine().isEmpty()) {
+			String path = found.getNome() + ".jpg";
+			storeImg(found.getUrlImmagine(), path);
+			found.setUrlImmagine(path);
 		}
-		return this.saveAppartamento(found);
+		if (ap.getMetaId() != null) {
+			found.setMeta(this.mSrv.findById(ap.getMetaId()));
+		}
+		return this.aRepo.save(found);
 	}
 
 }

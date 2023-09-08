@@ -1,5 +1,8 @@
 package com.capstone.progettofinale.payload;
 
+import com.capstone.progettofinale.model.Hotel;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +14,15 @@ import lombok.Setter;
 @Setter
 public class HotelPayload extends AlloggioPayload {
 
-	private int numStelle;
+	private Integer numStelle;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private int numSingole;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private int numDoppie;
+
+	public HotelPayload(Hotel h) {
+		super(h);
+		this.numStelle = h.getStelle();
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.capstone.progettofinale.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.capstone.progettofinale.model.Prenotazione;
 import com.capstone.progettofinale.payload.AcquistoPayload;
 import com.capstone.progettofinale.payload.PrenotazionePayload;
 import com.capstone.progettofinale.repository.AcquistoRepository;
+import com.capstone.progettofinale.repository.HotelRepository;
 import com.capstone.progettofinale.repository.PrenotazioneRepository;
 
 @Service
@@ -25,6 +27,9 @@ public class PrenotazioneService {
 
 	@Autowired
 	private TrasportoService tSrv;
+
+	@Autowired
+	private HotelRepository hRepo;
 
 	@Autowired
 	private AlloggioService aSrv;
@@ -74,7 +79,7 @@ public class PrenotazioneService {
 		Acquisto a = new Acquisto(p.getPrezzo(), ap.getData(), p, uSrv.findById(ap.getUserId()));
 		if (p.getAlloggio() instanceof Hotel h) {
 			if (h.occupaPosti(p.getNumeroPosti())) {
-				aSrv.saveHotel(h);
+				hRepo.save(h);
 			} else {
 				throw new IllegalArgumentException("Prenotazione non più valida, posti non disponibili: " + h);
 			}
@@ -83,6 +88,6 @@ public class PrenotazioneService {
 	}
 
 	public List<Prenotazione> findDaPagare(Long userId) {
-		return this.pRepo.findNonPagate(userId);
+		return Collections.EMPTY_LIST;// this.pRepo.findNonPagate(userId);
 	}
 }

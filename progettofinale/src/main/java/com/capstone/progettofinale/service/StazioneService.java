@@ -39,29 +39,31 @@ public class StazioneService {
 		return this.pRepo.findAll();
 	}
 
-	public Aereoporto saveAereoporto(Aereoporto v) {
-		return this.aRepo.save(v);
+	public Aereoporto saveAereoporto(AereoportoPayload ap) {
+		Aereoporto a = new Aereoporto(ap.getNome(), ap.getLocalità(), ap.getSigla(), ap.getKmDistanza());
+		return this.aRepo.save(a);
 	}
 
-	public StazionePulman saveStazionePulman(StazionePulman t) {
-		return this.pRepo.save(t);
+	public StazionePulman saveStazionePulman(StazionePulmanPayload t) {
+		StazionePulman sp = new StazionePulman(t.getNome(), t.getLocalità(), t.getSigla(), t.getNumeroStalli());
+		return this.pRepo.save(sp);
 	}
 
-	public void deleteAereoporto(AereoportoPayload ap) {
-		if (ap.getId() != null) {
-			Aereoporto a = this.findAereoportoById(ap.getId());
+	public void deleteAereoporto(Long id) {
+		if (id != null) {
+			Aereoporto a = this.findAereoportoById(id);
 			this.aRepo.delete(a);
 		} else {
-			throw new IllegalArgumentException("id aereoporto non valido: " + ap.getId());
+			throw new IllegalArgumentException("id aereoporto non valido: " + id);
 		}
 	}
 
-	public void deleteStazionePulman(StazionePulmanPayload sp) {
-		if (sp.getId() != null) {
-			StazionePulman s = this.findStazionePulmanById(sp.getId());
+	public void deleteStazionePulman(Long id) {
+		if (id != null) {
+			StazionePulman s = this.findStazionePulmanById(id);
 			this.pRepo.delete(s);
 		} else {
-			throw new IllegalArgumentException("id stazione non valido: " + sp.getId());
+			throw new IllegalArgumentException("id stazione non valido: " + id);
 		}
 	}
 

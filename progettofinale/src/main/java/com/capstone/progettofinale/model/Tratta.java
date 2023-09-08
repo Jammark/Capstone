@@ -7,8 +7,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.PrimaryKeyJoinColumns;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
@@ -19,10 +17,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "tratte", uniqueConstraints = @UniqueConstraint(columnNames = { "data_partenza", "partenza_id",
+@Table(name = "tratte", uniqueConstraints = @UniqueConstraint(columnNames = { "partenza_id",
 		"arrivo_id" }))
-@PrimaryKeyJoinColumns(value = { @PrimaryKeyJoinColumn(name = "trasporto_id"),
-		@PrimaryKeyJoinColumn(name = "data_partenza") })
+
 public class Tratta extends Trasporto {
 
 	@Column(name = "nome_azienda")

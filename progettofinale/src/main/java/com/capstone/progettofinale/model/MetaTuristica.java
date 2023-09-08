@@ -8,12 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "meta")
+@Table(name = "meta", uniqueConstraints = { @UniqueConstraint(columnNames = { "nome", "url_immagine" }) })
 @NoArgsConstructor
 @Getter
 @Setter
@@ -25,9 +26,10 @@ public abstract class MetaTuristica {
 	@Column(name = "meta_id")
 	private Long id;
 
+	@Column(unique = true, nullable = false)
 	private String nome;
 	private String descrizione;
-	@Column(name = "url_immagine")
+	@Column(name = "url_immagine", nullable = false)
 	private String urlImmagine;
 
 	public MetaTuristica(String nome, String descrizione, String urlImmagine) {

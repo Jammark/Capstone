@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Città extends MetaTuristica {
 
-	@ManyToOne
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "destinazione_id")
 	private Destinazione destinazione;
 

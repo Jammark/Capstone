@@ -19,6 +19,7 @@ import com.capstone.progettofinale.payload.UserRequestPayload;
 import com.capstone.progettofinale.payload.UserResponsePayload;
 import com.capstone.progettofinale.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -37,10 +38,12 @@ public class AuthController {
 
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
-	public User saveUser(@RequestBody UserRequestPayload body) {
+	public UserResponsePayload saveUser(@Valid @RequestBody UserRequestPayload body) {
 		try {
-		User created = usersService.saveUser(convertPayload(body));
-		return created;
+			User user = usersService.saveUser(convertPayload(body));
+			UserResponsePayload up = new UserResponsePayload(user.getId(), user.getUsername(), user.getNome(),
+					user.getCognome(), user.getDataDiNascita(), user.getRuolo().name());
+			return up;
 		} catch (DataIntegrityViolationException e) {
 			log.error(e.getMessage());
 			throw new BadRequestException("username già esistente.");
@@ -50,23 +53,22 @@ public class AuthController {
 	}
 
 	@PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public LoginSuccessfullPayload login(@RequestBody UserLoginPayload body) {
-		// 1. Verifichiamo che l'email dell'utente sia presente nel db
+	public LoginSuccessfullPayload login(@Valid @RequestBody UserLoginPayload body) {
+
 
 		User user = usersService.findByUsername(body.getEmail());
 
-		// 2. In caso affermativo, devo verificare che la pw corrisponda a quella
-		// trovata nel db
+
 		if (passwordEncoder.matches(body.getPassword(), user.getPassword())) {
 
-			// 3. Se le credenziali sono OK --> genero un JWT e lo invio come risposta
+
 			String token = jwtTools.createToken(user);
 			return new LoginSuccessfullPayload(token, new UserResponsePayload(user.getId(), user.getUsername(),
 					user.getNome(),
 					user.getCognome(), user.getDataDiNascita(), user.getRuolo().name()));
 
 		} else {
-			// 4. Se le credenziali NON sono OK --> 401
+
 			throw new UnauthorizedException("Credenziali non valide!");
 		}
 	}
@@ -74,7 +76,7 @@ public class AuthController {
 	private User convertPayload(UserRequestPayload body) {
 		User newUser = new User(body.getEmail(), this.passwordEncoder.encode(body.getPassword()), body.getName(),
 				body.getSurname(),
-				body.getData(), UserRole.USER);
+				body.getDataDiNascita(), UserRole.USER);
 		return newUser;
 	}
 
