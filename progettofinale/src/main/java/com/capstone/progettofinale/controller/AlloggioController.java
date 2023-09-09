@@ -22,6 +22,7 @@ import com.capstone.progettofinale.model.Hotel;
 import com.capstone.progettofinale.payload.AppartamentoPayload;
 import com.capstone.progettofinale.payload.HotelPayload;
 import com.capstone.progettofinale.service.AlloggioService;
+import com.capstone.progettofinale.service.RatingService;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -34,17 +35,24 @@ public class AlloggioController {
 	@Autowired
 	private AlloggioService aSrv;
 
+	@Autowired
+	private RatingService rSrv;
+
 	@GetMapping("/hotels")
 	public ResponseEntity<List<HotelPayload>> getAllHotels() {
 		List<Hotel> lista = aSrv.findAllHotel();
-		return ResponseEntity.ok(lista.stream().map(HotelPayload::new).toList());
+		List<HotelPayload> body = lista.stream().map(HotelPayload::new).toList();
+		rSrv.setRatings(body);
+		return ResponseEntity.ok(body);
 	}
 
 	@GetMapping("/hotels/{id}")
 	public ResponseEntity<HotelPayload> getHotelById(@PathVariable Long id) {
 		try {
 			Hotel h = aSrv.findHotelById(id);
-			return ResponseEntity.ok(new HotelPayload(h));
+			HotelPayload body = new HotelPayload(h);
+			rSrv.setRatings(List.of(body));
+			return ResponseEntity.ok(body);
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
 		}
@@ -53,14 +61,18 @@ public class AlloggioController {
 	@GetMapping("/appartamenti")
 	public ResponseEntity<List<AppartamentoPayload>> getAllAppartamenti() {
 		List<Appartamento> lista = aSrv.findAllAppartamenti();
-		return ResponseEntity.ok(lista.stream().map(AppartamentoPayload::new).toList());
+		List<AppartamentoPayload> body = lista.stream().map(AppartamentoPayload::new).toList();
+		rSrv.setRatings(body);
+		return ResponseEntity.ok(body);
 	}
 
 	@GetMapping("/appartamenti/{id}")
 	public ResponseEntity<AppartamentoPayload> getAppartamentoById(@PathVariable Long id) {
 		try {
 			Appartamento c = aSrv.findAppartamentoById(id);
-			return ResponseEntity.ok(new AppartamentoPayload(c));
+			AppartamentoPayload body = new AppartamentoPayload(c);
+			rSrv.setRatings(List.of(body));
+			return ResponseEntity.ok(body);
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
 		}
@@ -70,7 +82,9 @@ public class AlloggioController {
 	public ResponseEntity<HotelPayload> createCittà(@Valid @RequestBody HotelPayload cp) {
 
 		Hotel c = aSrv.saveHotel(cp);
-		return new ResponseEntity<HotelPayload>(new HotelPayload(c), HttpStatus.CREATED);
+		HotelPayload body = new HotelPayload(c);
+		rSrv.setRatings(List.of(body));
+		return new ResponseEntity<HotelPayload>(body, HttpStatus.CREATED);
 
 	}
 
@@ -78,14 +92,18 @@ public class AlloggioController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<AppartamentoPayload> creteDestination(@Valid @RequestBody AppartamentoPayload dp) {
 		Appartamento d = aSrv.saveAppartamento(dp);
-		return ResponseEntity.ofNullable(new AppartamentoPayload(d));
+		AppartamentoPayload body = new AppartamentoPayload(d);
+		rSrv.setRatings(List.of(body));
+		return ResponseEntity.ofNullable(body);
 	}
 
 	@PutMapping("/hotels/{id}")
 	public ResponseEntity<HotelPayload> updateHotel(@PathVariable Long id, @RequestBody HotelPayload hp) {
 		hp.setId(id);
 		Hotel h = this.aSrv.updateHotel(hp);
-		return new ResponseEntity<HotelPayload>(new HotelPayload(h), HttpStatus.OK);
+		HotelPayload body = new HotelPayload(h);
+		rSrv.setRatings(List.of(body));
+		return new ResponseEntity<HotelPayload>(body, HttpStatus.OK);
 	}
 
 	@PutMapping("/appartamenti/{id}")
@@ -93,7 +111,9 @@ public class AlloggioController {
 			@RequestBody AppartamentoPayload ap) {
 		ap.setId(id);
 		Appartamento a = this.aSrv.updateAppartamento(ap);
-		return new ResponseEntity<AppartamentoPayload>(new AppartamentoPayload(a), HttpStatus.OK);
+		AppartamentoPayload body = new AppartamentoPayload(a);
+		rSrv.setRatings(List.of(body));
+		return new ResponseEntity<AppartamentoPayload>(body, HttpStatus.OK);
 	}
 
 	@DeleteMapping("destinazioni/{hotelId}")

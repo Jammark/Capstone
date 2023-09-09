@@ -1,11 +1,13 @@
 package com.capstone.progettofinale.service;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.progettofinale.common.IAuthenticationFacade;
 import com.capstone.progettofinale.model.Acquisto;
 import com.capstone.progettofinale.model.Appartamento;
 import com.capstone.progettofinale.model.Hotel;
@@ -18,6 +20,9 @@ import com.capstone.progettofinale.repository.PrenotazioneRepository;
 
 @Service
 public class PrenotazioneService {
+
+	@Autowired
+	private IAuthenticationFacade auth;
 
 	@Autowired
 	private PrenotazioneRepository pRepo;
@@ -40,6 +45,10 @@ public class PrenotazioneService {
 	@Autowired
 	private UserService uSrv;
 
+	private Long getUserId() {
+		return this.auth.getUser().getId();
+	}
+
 	public Prenotazione findById(Long id) {
 		return this.pRepo.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("id prenotazione inesistente: " + id));
@@ -50,12 +59,21 @@ public class PrenotazioneService {
 				.orElseThrow(() -> new IllegalArgumentException("id acquisto inesistente: " + id));
 	}
 
+
 	public List<Prenotazione> findAll() {
-		return this.pRepo.findAll();
+		return this.pRepo.findByUserId(getUserId());
+	}
+
+	public List<Prenotazione> findDaPagare() {
+		return this.pRepo.findNonPagate(getUserId());
 	}
 
 	public List<Acquisto> findAllAcquisti() {
 		return this.aRepo.findAll();
+	}
+
+	public List<Acquisto> riepilogoAcquisti() {
+		return this.aRepo.findByUtenteId(getUserId());
 	}
 
 	public Prenotazione save(PrenotazionePayload pp) {
@@ -74,6 +92,17 @@ public class PrenotazioneService {
 
 	}
 	
+	public Acquisto acquistaPrenotazione(Long prenotazioneId) {
+		Prenotazione p = this.findById(prenotazioneId);
+		if (p.getUser() != null && p.getUser().getId().equals(getUserId())) {
+			AcquistoPayload ap = new AcquistoPayload(null, LocalDate.now(), getUserId(), prenotazioneId, p.getPrezzo());
+			return this.saveAcquisto(ap);
+		} else {
+			throw new IllegalArgumentException(
+					"Id prenotazione non valido: " + prenotazioneId + ", pre l'utente: " + auth.getUser());
+		}
+	}
+
 	public Acquisto saveAcquisto(AcquistoPayload ap) {
 		Prenotazione p = findById(ap.getPrenotazioneId());
 		Acquisto a = new Acquisto(p.getPrezzo(), ap.getData(), p, uSrv.findById(ap.getUserId()));

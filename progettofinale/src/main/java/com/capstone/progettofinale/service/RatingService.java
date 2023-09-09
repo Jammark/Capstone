@@ -1,18 +1,24 @@
 package com.capstone.progettofinale.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.progettofinale.common.IAuthenticationFacade;
 import com.capstone.progettofinale.model.Alloggio;
 import com.capstone.progettofinale.model.Rating;
 import com.capstone.progettofinale.model.User;
+import com.capstone.progettofinale.payload.AlloggioPayload;
 import com.capstone.progettofinale.payload.RatingPayload;
 import com.capstone.progettofinale.repository.RatingRepository;
 
 @Service
 public class RatingService {
+
+	@Autowired
+	private IAuthenticationFacade auth;
 
 	@Autowired
 	private RatingRepository repo;
@@ -23,6 +29,10 @@ public class RatingService {
 	@Autowired
 	private AlloggioService aSrv;
 
+	private Long getUserId() {
+		return this.auth.getUser().getId();
+	}
+
 	public Rating findById(Long id) {
 		return this.repo.findById(id).orElseThrow(() -> new IllegalArgumentException("id rating non valido: " + id));
 	}
@@ -32,10 +42,9 @@ public class RatingService {
 	}
 
 	public Rating save(RatingPayload rp) {
-		if (rp.getUser() != null && rp.getUser().getId() != null && rp.getAlloggio() != null
-				&& rp.getAlloggio().getId() != null) {
-			User u = uSrv.findById(rp.getUser().getId());
-			Alloggio a = aSrv.findById(rp.getAlloggio().getId());
+		if (rp.getUserId() != null && rp.getAlloggioId() != null) {
+			User u = uSrv.findById(rp.getUserId());
+			Alloggio a = aSrv.findById(rp.getAlloggioId());
 			Rating r = new Rating(u, a, this.checkRate(rp.getRate()));
 			return this.repo.save(r);
 		} else {
@@ -64,6 +73,17 @@ public class RatingService {
 			return rate;
 		else
 			throw new IllegalArgumentException("valore rate non valido min 0 max 5; val: " + rate);
+	}
+
+	public List<Rating> findByAlloggi(List<Long> alloggiIds, long userId) {
+		return this.repo.findByUserIdAndAlloggioIdIn(userId,
+				Set.of(alloggiIds.stream().toArray(Long[]::new)));
+	}
+
+	public void setRatings(List<? extends AlloggioPayload> alloggi) {
+		List<Rating> ratings = this.findByAlloggi(alloggi.stream().map(AlloggioPayload::getId).toList(), getUserId());
+		alloggi.forEach(a -> a.setRate(ratings.stream().filter(r -> r.getAlloggio().getId().equals(a.getId()))
+				.map(Rating::getRate).findAny().get()));
 	}
 
 }

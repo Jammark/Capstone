@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.progettofinale.common.IAuthenticationFacade;
 import com.capstone.progettofinale.model.Alloggio;
 import com.capstone.progettofinale.model.Appartamento;
 import com.capstone.progettofinale.model.Hotel;
@@ -19,6 +20,9 @@ import com.capstone.progettofinale.repository.HotelRepository;
 public class AlloggioService extends AbstractService {
 
 	@Autowired
+	private IAuthenticationFacade auth;
+
+	@Autowired
 	private HotelRepository hRepo;
 
 	@Autowired
@@ -30,8 +34,13 @@ public class AlloggioService extends AbstractService {
 	@Autowired
 	private MetaService mSrv;
 
+
 	public AlloggioService() {
 		super("alloggi");
+	}
+
+	private Long getUserId() {
+		return this.auth.getUser().getId();
 	}
 
 	public Alloggio findById(Long id) {
@@ -128,5 +137,7 @@ public class AlloggioService extends AbstractService {
 		}
 		return this.aRepo.save(found);
 	}
+
+
 
 }
