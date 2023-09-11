@@ -116,14 +116,14 @@ public class AlloggioController {
 		return new ResponseEntity<AppartamentoPayload>(body, HttpStatus.OK);
 	}
 
-	@DeleteMapping("destinazioni/{hotelId}")
+	@DeleteMapping("hotels/{hotelId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> deleteHotel(@PathVariable Long hotelId) {
 		this.aSrv.deleteHotel(hotelId);
 		return new ResponseEntity<String>("Rimosso hotel cond id: " + hotelId, HttpStatus.NO_CONTENT);
 	}
 
-	@DeleteMapping("città/{appartamentoId}")
+	@DeleteMapping("appartamenti/{appartamentoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> deleteCity(@PathVariable Long appartamentoId) {
 		this.aSrv.deleteAppartamento(appartamentoId);

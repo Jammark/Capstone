@@ -15,6 +15,7 @@
 	<description>Progetto finale</description>
 	<properties>
 		<java.version>17</java.version>
+		  <jackson.version>2.9.6</jackson.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,6 +58,24 @@
 			<scope>test</scope>
 		</dependency>
 		
+		 <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+    
+     <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.10</version>
+</dependency>
+		
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-annotations</artifactId>
+    <version>3.5.6-Final</version>
+</dependency>
+		
 		
 		<dependency> 
     <groupId>org.springframework.boot</groupId> 
@@ -98,6 +117,13 @@
 		    <artifactId>opencsv</artifactId>
 		    <version>5.7.1</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.15.2</version>
+</dependency>
 	</dependencies>
 
 	<build>

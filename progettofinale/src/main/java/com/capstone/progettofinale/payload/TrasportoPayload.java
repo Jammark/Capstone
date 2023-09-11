@@ -3,8 +3,11 @@ package com.capstone.progettofinale.payload;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.springframework.lang.Nullable;
+
 import com.capstone.progettofinale.model.Trasporto;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,14 +24,18 @@ public abstract class TrasportoPayload {
 
 	private String nome;
 	private String descrizione;
-
-	@JsonFormat(pattern = "KK:mm")
+//	@DateTimeFormat(pattern = "hh:mm", iso = ISO.TIME)
+	@JsonFormat(pattern = "H:mm", shape = JsonFormat.Shape.STRING)
+//	@Schema(description = "My time, Europe/Madrid zone", example = "18:07:22", required = false, type = "string", format = "time")
+//	@JsonDeserialize(using = LocalTimeJsonSerializer.class)
+	@Nullable
 	private LocalTime durata;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-M-dd")
 	private LocalDate dataPartenza;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-M-dd")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private LocalDate dataArrivo;
 
 	private int postiDisponibili;

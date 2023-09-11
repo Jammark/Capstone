@@ -59,7 +59,9 @@ public class MetaService extends AbstractService {
 	}
 
 	public void deleteCittà(Long id) {
-		cRepo.delete(this.findCittàById(id));
+		Città c = this.findCittàById(id);
+
+		cRepo.deleteById(c.getId());
 	}
 
 	public void deleteDestinazione(Long id) {
@@ -147,7 +149,7 @@ public class MetaService extends AbstractService {
 			Città c = this.findCittàById(cp.getId());
 			c.setDestinazione(dest);
 			dest.getCittà().add(this.cRepo.save(c));
-
+			this.cRepo.save(c);
 			return this.dRepo.save(dest);
 		} else {
 			throw new IllegalArgumentException("campo destinazione non valido: " + cp);

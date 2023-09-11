@@ -78,7 +78,7 @@ public class PrenotazioneService {
 
 	public Prenotazione save(PrenotazionePayload pp) {
 		Prenotazione p = new Prenotazione(pp.getData(), pp.getNumeroGiorni(), mSrv.findById(pp.getMetaId()),
-				uSrv.findById(pp.getUserId()), aSrv.findById(pp.getAlloggioId()), tSrv.findById(pp.getTrasportoId()),
+				uSrv.findById(this.getUserId()), aSrv.findById(pp.getAlloggioId()), tSrv.findById(pp.getTrasportoId()),
 				pp.getNumeroPosti());
 		p.setPrezzo(
 				p.getAlloggio().getPrezzo() * p.getNumeroGiorni() + p.getTrasporto().getPrezzo() * p.getNumeroPosti());

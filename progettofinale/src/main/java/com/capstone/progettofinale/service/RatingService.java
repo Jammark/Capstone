@@ -42,8 +42,8 @@ public class RatingService {
 	}
 
 	public Rating save(RatingPayload rp) {
-		if (rp.getUserId() != null && rp.getAlloggioId() != null) {
-			User u = uSrv.findById(rp.getUserId());
+		if (rp.getAlloggioId() != null) {
+			User u = uSrv.findById(this.getUserId());
 			Alloggio a = aSrv.findById(rp.getAlloggioId());
 			Rating r = new Rating(u, a, this.checkRate(rp.getRate()));
 			return this.repo.save(r);
@@ -82,8 +82,14 @@ public class RatingService {
 
 	public void setRatings(List<? extends AlloggioPayload> alloggi) {
 		List<Rating> ratings = this.findByAlloggi(alloggi.stream().map(AlloggioPayload::getId).toList(), getUserId());
-		alloggi.forEach(a -> a.setRate(ratings.stream().filter(r -> r.getAlloggio().getId().equals(a.getId()))
-				.map(Rating::getRate).findAny().get()));
+		alloggi.forEach(a -> {
+			List<Integer> lista = ratings.stream().filter(r -> r.getAlloggio().getId().equals(a.getId()))
+					.map(Rating::getRate).toList();
+
+			if (!lista.isEmpty()) {
+				a.setRate(Math.floorDiv(lista.stream().reduce(0, (sum, val) -> sum + val), lista.size()));
+			}
+		});
 	}
 
 }

@@ -2,6 +2,7 @@ package com.capstone.progettofinale.payload;
 
 import java.util.Optional;
 
+import com.capstone.progettofinale.model.Aereoporto;
 import com.capstone.progettofinale.model.Volo;
 
 import lombok.AllArgsConstructor;
@@ -21,9 +22,9 @@ public class VoloPayload extends TrasportoPayload {
 	public VoloPayload(Volo v) {
 		super(v);
 		this.compagnia = v.getCompagniaAerea();
-		this.partenzaId = Optional.ofNullable(v.getPartenza()).orElse(null).getId();
-		this.arrivoId = Optional.ofNullable(v.getArrivo()).orElse(null).getId();
-		this.stopId = Optional.ofNullable(v.getStop()).orElse(null).getId();
+		this.partenzaId = Optional.ofNullable(v.getPartenza()).map(Aereoporto::getId).orElse(null);
+		this.arrivoId = Optional.ofNullable(v.getArrivo()).map(Aereoporto::getId).orElse(null);
+		this.stopId = Optional.ofNullable(v.getStop()).map(Aereoporto::getId).orElse(null);
 	}
 
 }

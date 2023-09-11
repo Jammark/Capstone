@@ -24,7 +24,7 @@ public class PrenotazionePayload {
 
 	private Long id;
 
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-M-dd")
 	private LocalDate data;
 
 	private int numeroGiorni;

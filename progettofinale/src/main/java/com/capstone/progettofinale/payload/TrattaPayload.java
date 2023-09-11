@@ -19,6 +19,7 @@ public class TrattaPayload extends TrasportoPayload {
 	private Long partenzaId, arrivoId;
 
 	public TrattaPayload(Tratta t) {
+		super(t);
 		this.nomeAzienda = t.getAziendaDiTrasporto();
 		this.partenzaId = Optional.ofNullable(t.getPartenza()).orElse(null).getId();
 		this.arrivoId = Optional.ofNullable(t.getArrivo()).orElse(null).getId();

@@ -1,6 +1,7 @@
 package com.capstone.progettofinale.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -13,9 +14,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+//@OnDelete(action = OnDeleteAction.CASCADE)
 public class Città extends MetaTuristica {
 
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "destinazione_id")
 	private Destinazione destinazione;
 

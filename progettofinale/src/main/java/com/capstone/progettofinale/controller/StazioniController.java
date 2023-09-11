@@ -37,7 +37,7 @@ public class StazioniController {
 	}
 
 	@GetMapping("/aereoporti/{id}")
-	public ResponseEntity<AereoportoPayload> getCittàById(@PathVariable Long id) {
+	public ResponseEntity<AereoportoPayload> getAereoportoById(@PathVariable Long id) {
 		try {
 			Aereoporto a = srv.findAereoportoById(id);
 			return ResponseEntity.ok(new AereoportoPayload(a));
@@ -53,7 +53,7 @@ public class StazioniController {
 	}
 
 	@GetMapping("/pulman/{id}")
-	public ResponseEntity<StazionePulmanPayload> getDestinazioneById(@PathVariable Long id) {
+	public ResponseEntity<StazionePulmanPayload> getStzPulmanById(@PathVariable Long id) {
 		try {
 			StazionePulman c = srv.findStazionePulmanById(id);
 			return ResponseEntity.ok(new StazionePulmanPayload(c));
@@ -62,8 +62,8 @@ public class StazioniController {
 		}
 	}
 
-	@PostMapping("/aereporti")
-	public ResponseEntity<AereoportoPayload> createCittà(@Valid @RequestBody AereoportoPayload cp) {
+	@PostMapping("/aereoporti")
+	public ResponseEntity<AereoportoPayload> createAereoporto(@Valid @RequestBody AereoportoPayload cp) {
 
 		Aereoporto c = srv.saveAereoporto(cp);
 		return new ResponseEntity<AereoportoPayload>(new AereoportoPayload(c), HttpStatus.CREATED);
@@ -72,34 +72,37 @@ public class StazioniController {
 
 	@PostMapping("/pulman")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<StazionePulmanPayload> creteDestination(@Valid @RequestBody StazionePulmanPayload dp) {
+	public ResponseEntity<StazionePulmanPayload> creteStzPulman(@Valid @RequestBody StazionePulmanPayload dp) {
 		StazionePulman d = srv.saveStazionePulman(dp);
 		return ResponseEntity.ofNullable(new StazionePulmanPayload(d));
 	}
 
 	@PutMapping("/aereoporti/{id}")
-	public ResponseEntity<AereoportoPayload> updateCity(@PathVariable Long id, @RequestBody AereoportoPayload cp) {
+	public ResponseEntity<AereoportoPayload> updateAereoporto(@PathVariable Long id,
+			@RequestBody AereoportoPayload cp) {
+		cp.setId(id);
 		Aereoporto c = this.srv.updateAereoporto(cp);
 		return new ResponseEntity<AereoportoPayload>(new AereoportoPayload(c), HttpStatus.OK);
 	}
 
 	@PutMapping("/pulman/{id}")
-	public ResponseEntity<StazionePulmanPayload> updateDestination(@PathVariable Long id,
+	public ResponseEntity<StazionePulmanPayload> updateStzPulman(@PathVariable Long id,
 			@RequestBody StazionePulmanPayload dp) {
+		dp.setId(id);
 		StazionePulman d = this.srv.updateStazionePulman(dp);
 		return new ResponseEntity<StazionePulmanPayload>(new StazionePulmanPayload(d), HttpStatus.OK);
 	}
 
 	@DeleteMapping("aereoporti/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<?> deleteDestination(@PathVariable Long id) {
+	public ResponseEntity<?> deleteAereoporto(@PathVariable Long id) {
 		this.srv.deleteAereoporto(id);
 		return new ResponseEntity<String>("Rimossa destinazione cond id: " + id, HttpStatus.NO_CONTENT);
 	}
 
-	@DeleteMapping("città/{id}")
+	@DeleteMapping("pulman/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<?> deleteCity(@PathVariable Long id) {
+	public ResponseEntity<?> deleteStzPulman(@PathVariable Long id) {
 		this.srv.deleteStazionePulman(id);
 		return new ResponseEntity<String>("Rimossa città cond id: " + id, HttpStatus.NO_CONTENT);
 	}

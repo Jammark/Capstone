@@ -44,7 +44,10 @@ public class SecurityConfig {
 				(authz) -> authz
 						.requestMatchers(HttpMethod.GET, "/mete/**", "/alloggi/**", "/stazioni/**", "/trasporti/**",
 								"/prenotazioni/**")
-						.hasAnyAuthority("USER", "ADMIN").requestMatchers(HttpMethod.POST, "/prenotazioni/**")
+						.hasAnyAuthority("USER", "ADMIN")
+						.requestMatchers(HttpMethod.POST, "/prenotazioni/**", "/ratings/**")
+						.hasAnyAuthority("USER", "ADMIN")
+						.requestMatchers(HttpMethod.POST, "/prenotazioni/**", "/ratings/**")
 						.hasAnyAuthority("USER", "ADMIN")
 						.requestMatchers(HttpMethod.POST, "/mete/**", "/users/**", "/alloggi/**", "/stazioni/**",
 								"/trasporti/**")

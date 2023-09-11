@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.capstone.progettofinale.model.Alloggio;
 import com.capstone.progettofinale.model.Rating;
 import com.capstone.progettofinale.model.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,8 +19,10 @@ import lombok.Setter;
 public class RatingPayload {
 
 	private int rate;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Long id;
 	private Long alloggioId;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private Long userId;
 
 	public RatingPayload(Rating r) {

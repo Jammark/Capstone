@@ -28,7 +28,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/mete")
-public class MeteContrtoller {
+public class MeteController {
 
 	@Autowired
 	private MetaService mSrv;
@@ -118,9 +118,9 @@ public class MeteContrtoller {
 
 	@DeleteMapping("città/{cityId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<?> deleteCity(@PathVariable Long cityId) {
+	public ResponseEntity<String> deleteCity(@PathVariable Long cityId) {
 		this.mSrv.deleteCittà(cityId);
-		return new ResponseEntity<String>("Rimossa città cond id: " + cityId, HttpStatus.NO_CONTENT);
+		return ResponseEntity.ofNullable("Rimossa città cond id: " + cityId);
 	}
 
 	@GetMapping(value = "/image/{img}", produces = MediaType.IMAGE_JPEG_VALUE)
