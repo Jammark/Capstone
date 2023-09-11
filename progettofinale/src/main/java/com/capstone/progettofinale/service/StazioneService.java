@@ -21,6 +21,9 @@ public class StazioneService {
 	@Autowired
 	private StazionePulmanRepository pRepo;
 
+	@Autowired
+	private MetaService mSrv;
+
 	public Aereoporto findAereoportoById(Long id) {
 		return this.aRepo.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("id aereoporto non valido: " + id));
@@ -41,11 +44,17 @@ public class StazioneService {
 
 	public Aereoporto saveAereoporto(AereoportoPayload ap) {
 		Aereoporto a = new Aereoporto(ap.getNome(), ap.getLocalità(), ap.getSigla(), ap.getKmDistanza());
+		if (ap.getCityId() != null) {
+			a.setCittà(mSrv.findCittàById(ap.getCityId()));
+		}
 		return this.aRepo.save(a);
 	}
 
 	public StazionePulman saveStazionePulman(StazionePulmanPayload t) {
 		StazionePulman sp = new StazionePulman(t.getNome(), t.getLocalità(), t.getSigla(), t.getNumeroStalli());
+		if (t.getCityId() != null) {
+			sp.setCittà(mSrv.findCittàById(t.getCityId()));
+		}
 		return this.pRepo.save(sp);
 	}
 

@@ -3,6 +3,7 @@ package com.capstone.progettofinale.payload;
 import java.time.LocalDate;
 
 import com.capstone.progettofinale.model.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class UserResponsePayload {
 	private String username;
 	private String nome;
 	private String cognome;
+	@JsonFormat(pattern = "yyyy-M-dd")
 	private LocalDate dataDiNascita;
 
 	private String ruolo;

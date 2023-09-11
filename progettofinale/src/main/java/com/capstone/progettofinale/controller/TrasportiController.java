@@ -1,8 +1,10 @@
 package com.capstone.progettofinale.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,9 +26,11 @@ import com.capstone.progettofinale.payload.VoloPayload;
 import com.capstone.progettofinale.service.TrasportoService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/trasporti")
+@Slf4j
 public class TrasportiController {
 
 	@Autowired
@@ -45,6 +50,15 @@ public class TrasportiController {
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@GetMapping("/voli/cerca")
+	public ResponseEntity<List<VoloPayload>> getAllFligths(@RequestParam(required = true) String partenza,
+			@RequestParam(required = true) String arrivo,
+			@RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-M-dd") LocalDate data) {
+		log.info(data.toString());
+		List<Volo> lista = srv.findVoliByArrivoEPartenza(partenza, arrivo, data);
+		return ResponseEntity.ofNullable(lista.stream().map(VoloPayload::new).toList());
 	}
 
 	@GetMapping("/tratte")

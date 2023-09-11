@@ -1,5 +1,6 @@
 package com.capstone.progettofinale.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -122,8 +123,8 @@ public class TrasportoService {
 		t.setPrezzo(tp.getPrezzo());
 	}
 
-	public List<Volo> findVoliByArrivoEPartenza(Long partenzaId, Long arrivoId) {
-		return this.vRepo.findByPartenzaCittàIdAndArrivoCittàId(partenzaId, arrivoId);
+	public List<Volo> findVoliByArrivoEPartenza(String partenzaNome, String arrivoNome, LocalDate data) {
+		return this.vRepo.findByPartenzaCittàNomeAndArrivoCittàNomeAndDataPartenza(partenzaNome, arrivoNome, data);
 	}
 
 	public List<Tratta> findTratteByArrivoEPartenza(Long partenzaId, Long arrivoId) {
