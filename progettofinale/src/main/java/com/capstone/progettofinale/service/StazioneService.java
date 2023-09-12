@@ -1,6 +1,7 @@
 package com.capstone.progettofinale.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,10 +80,11 @@ public class StazioneService {
 	public Aereoporto updateAereoporto(AereoportoPayload ap) {
 		if (ap.getId() != null) {
 			Aereoporto a = this.findAereoportoById(ap.getId());
-			a.setKmDiDistanza(ap.getKmDistanza());
-			a.setLocalità(ap.getLocalità());
-			a.setNome(ap.getNome());
-			a.setSigla(ap.getSigla());
+			a.setKmDiDistanza(Optional.ofNullable(ap.getKmDistanza()).orElse(a.getKmDiDistanza()));
+			a.setLocalità(Optional.ofNullable(ap.getLocalità()).orElse(a.getLocalità()));
+			a.setNome(Optional.ofNullable(ap.getNome()).orElse(a.getNome()));
+			a.setSigla(Optional.ofNullable(ap.getSigla()).orElse(a.getSigla()));
+			a.setCittà(Optional.ofNullable(ap.getCityId()).map(mSrv::findCittàById).orElse(a.getCittà()));
 			return this.aRepo.save(a);
 		} else {
 			throw new IllegalArgumentException("id aereoporto non valido: " + ap.getId());
@@ -92,10 +94,11 @@ public class StazioneService {
 	public StazionePulman updateStazionePulman(StazionePulmanPayload sp) {
 		if (sp.getId() != null) {
 			StazionePulman s = this.findStazionePulmanById(sp.getId());
-			s.setNumeroStalli(sp.getNumeroStalli());
-			s.setLocalità(sp.getLocalità());
-			s.setNome(sp.getNome());
-			s.setSigla(sp.getSigla());
+			s.setNumeroStalli(Optional.ofNullable(sp.getNumeroStalli()).orElse(s.getNumeroStalli()));
+			s.setLocalità(Optional.ofNullable(sp.getLocalità()).orElse(s.getLocalità()));
+			s.setNome(Optional.ofNullable(sp.getNome()).orElse(s.getNome()));
+			s.setSigla(Optional.ofNullable(sp.getSigla()).orElse(s.getSigla()));
+			s.setCittà(Optional.ofNullable(sp.getCityId()).map(mSrv::findCittàById).orElse(s.getCittà()));
 			return this.pRepo.save(s);
 		} else {
 			throw new IllegalArgumentException("id stazione non valido: " + sp.getId());

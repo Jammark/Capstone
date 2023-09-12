@@ -58,6 +58,15 @@ public class MetaService extends AbstractService {
 		return dRepo.findAll();
 	}
 
+	public List<Destinazione> findMostRated() {
+		return dRepo.findMostRated();
+	}
+
+	public List<Città> findMostRatedCities() {
+
+		return this.cRepo.findMostRated().stream().map(this::findCittàById).toList();
+	}
+
 	public void deleteCittà(Long id) {
 		Città c = this.findCittàById(id);
 

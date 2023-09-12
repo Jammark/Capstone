@@ -1,6 +1,6 @@
 package com.capstone.progettofinale.payload;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.springframework.lang.Nullable;
@@ -29,14 +29,15 @@ public abstract class TrasportoPayload {
 //	@Schema(description = "My time, Europe/Madrid zone", example = "18:07:22", required = false, type = "string", format = "time")
 //	@JsonDeserialize(using = LocalTimeJsonSerializer.class)
 	@Nullable
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private LocalTime durata;
 
-	@JsonFormat(pattern = "yyyy-M-dd")
-	private LocalDate dataPartenza;
+	@JsonFormat(pattern = "yyyy-M-dd H:mm")
+	private LocalDateTime dataPartenza;
 
-	@JsonFormat(pattern = "yyyy-M-dd")
+	@JsonFormat(pattern = "yyyy-M-dd H:mm")
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private LocalDate dataArrivo;
+	private LocalDateTime dataArrivo;
 
 	private int postiDisponibili;
 

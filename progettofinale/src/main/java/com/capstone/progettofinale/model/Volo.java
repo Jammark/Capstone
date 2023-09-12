@@ -1,7 +1,7 @@
 package com.capstone.progettofinale.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,7 +33,7 @@ public class Volo extends Trasporto {
 	@JoinColumn(name = "stop_id")
 	private Aereoporto stop;
 
-	public Volo(String nome, String descrizione, LocalTime durata, LocalDate dataPartenza, LocalDate dataArrivo,
+	public Volo(String nome, String descrizione, Duration durata, LocalDateTime dataPartenza, LocalDateTime dataArrivo,
 			int postiDisponibili, int postiOccupati, double prezzo, String compagniaAerea, Aereoporto partenza,
 			Aereoporto arrivo, Aereoporto stop) {
 		super(nome, descrizione, durata, dataPartenza, dataArrivo, postiDisponibili, postiOccupati, prezzo);

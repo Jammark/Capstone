@@ -1,5 +1,6 @@
 package com.capstone.progettofinale.service;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,8 @@ public class TrasportoService {
 	}
 
 	public Volo saveVolo(VoloPayload vp) {
-		Volo v = new Volo(vp.getNome(), vp.getDescrizione(), vp.getDurata(), vp.getDataPartenza(), vp.getDataArrivo(),
+		Duration durata = Duration.between(vp.getDataPartenza(), vp.getDataArrivo());
+		Volo v = new Volo(vp.getNome(), vp.getDescrizione(), durata, vp.getDataPartenza(), vp.getDataArrivo(),
 				vp.getPostiDisponibili(), 0, vp.getPrezzo(), vp.getCompagnia(),
 				sSrv.findAereoportoById(vp.getPartenzaId()), sSrv.findAereoportoById(vp.getArrivoId()),
 				Optional.ofNullable(vp.getStopId()).map(val -> sSrv.findAereoportoById(val)).orElse(null));
@@ -62,7 +64,8 @@ public class TrasportoService {
 	}
 
 	public Tratta saveTratta(TrattaPayload tp) {
-		Tratta t = new Tratta(tp.getNome(), tp.getDescrizione(), tp.getDurata(), tp.getDataPartenza(),
+		Tratta t = new Tratta(tp.getNome(), tp.getDescrizione(),
+				Duration.between(tp.getDataPartenza(), tp.getDataArrivo()), tp.getDataPartenza(),
 				tp.getDataArrivo(), tp.getPostiDisponibili(), 0, tp.getPrezzo(), tp.getNomeAzienda(),
 				sSrv.findStazionePulmanById(tp.getPartenzaId()), sSrv.findStazionePulmanById(tp.getArrivoId()));
 		return this.tRepo.save(t);
@@ -90,10 +93,11 @@ public class TrasportoService {
 		if (ap.getId() != null) {
 			Volo a = this.findVoloById(ap.getId());
 			setFields(a, ap);
-			a.setCompagniaAerea(ap.getCompagnia());
-			a.setPartenza(sSrv.findAereoportoById(ap.getPartenzaId()));
-			a.setArrivo(sSrv.findAereoportoById(ap.getArrivoId()));
-			a.setStop(sSrv.findAereoportoById(ap.getStopId()));
+			a.setCompagniaAerea(Optional.ofNullable(ap.getCompagnia()).orElse(a.getCompagniaAerea()));
+			a.setPartenza(
+					Optional.ofNullable(ap.getPartenzaId()).map(sSrv::findAereoportoById).orElse(a.getPartenza()));
+			a.setArrivo(Optional.ofNullable(ap.getArrivoId()).map(sSrv::findAereoportoById).orElse(a.getArrivo()));
+			a.setStop(Optional.ofNullable(ap.getStopId()).map(sSrv::findAereoportoById).orElse(null));
 			return this.vRepo.save(a);
 		} else {
 			throw new IllegalArgumentException("id aereoporto non valido: " + ap.getId());
@@ -104,8 +108,8 @@ public class TrasportoService {
 		if (tp.getId() != null) {
 			Tratta t = this.findTrattaById(tp.getId());
 			setFields(t, tp);
-			t.setPartenza(sSrv.findStazionePulmanById(tp.getPartenzaId()));
-			t.setArrivo(sSrv.findStazionePulmanById(tp.getArrivoId()));
+			t.setPartenza(Optional.ofNullable(tp.getPartenzaId()).map(sSrv::findStazionePulmanById).orElse(t.getPartenza()));
+			t.setArrivo(Optional.ofNullable(tp.getArrivoId()).map(sSrv::findStazionePulmanById).orElse(t.getArrivo()));
 			return this.tRepo.save(t);
 		} else {
 			throw new IllegalArgumentException("id stazione non valido: " + tp.getId());
@@ -113,22 +117,32 @@ public class TrasportoService {
 	}
 
 	private void setFields(Trasporto t, TrasportoPayload tp) {
-		t.setDataArrivo(tp.getDataArrivo());
-		t.setDataPartenza(tp.getDataPartenza());
-		t.setDescrizione(tp.getDescrizione());
-		t.setDurata(tp.getDurata());
-		t.setNome(tp.getNome());
-		t.setPostiDisponibili(tp.getPostiDisponibili());
-		t.setPostiOccupati(tp.getPostiOccupati());
-		t.setPrezzo(tp.getPrezzo());
+		t.setDataArrivo(Optional.ofNullable(tp.getDataArrivo()).orElse(t.getDataArrivo()));
+		t.setDataPartenza(Optional.ofNullable(tp.getDataPartenza()).orElse(t.getDataPartenza()));
+		t.setDescrizione(Optional.ofNullable(tp.getDescrizione()).orElse(t.getDescrizione()));
+		if (tp.getDataPartenza() != null && tp.getDataArrivo() != null) {
+			t.updateDurata(Duration.between(tp.getDataPartenza(), tp.getDataArrivo()));
+		}
+		t.setNome(Optional.ofNullable(tp.getNome()).orElse(t.getNome()));
+		t.setPostiDisponibili(Optional.ofNullable(tp.getPostiDisponibili()).orElse(t.getPostiDisponibili()));
+		t.setPostiOccupati(Optional.ofNullable(tp.getPostiOccupati()).orElse(t.getPostiOccupati()));
+		t.setPrezzo(Optional.ofNullable(tp.getPrezzo()).orElse(t.getPrezzo()));
 	}
 
 	public List<Volo> findVoliByArrivoEPartenza(String partenzaNome, String arrivoNome, LocalDate data) {
 		return this.vRepo.findByPartenzaCittàNomeAndArrivoCittàNomeAndDataPartenza(partenzaNome, arrivoNome, data);
 	}
 
-	public List<Tratta> findTratteByArrivoEPartenza(Long partenzaId, Long arrivoId) {
-		return this.tRepo.findByPartenzaCittàIdAndArrivoCittàId(partenzaId, arrivoId);
+	public List<Tratta> findTratteByArrivoEPartenza(String partenza, String arrivo, LocalDate data) {
+		return this.tRepo.findByPartenzaCittàNomeAndArrivoCittàNomeAndDataPartenza(partenza, arrivo, data);
 	}
 
+	public List<Volo> findVoliDisponibili(Long metaId) {
+		return this.vRepo.findVoliDisponibili(metaId, LocalDate.now().atStartOfDay(),
+				LocalDate.now().plusDays(10).atStartOfDay());
+	}
+
+	public Volo findRitorno(Long pId, Long aId, LocalDate data) {
+		return this.vRepo.findVolorRitorno(pId, aId, data.atStartOfDay()).orElse(null);
+	}
 }

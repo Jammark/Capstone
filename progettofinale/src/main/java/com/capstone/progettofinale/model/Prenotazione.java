@@ -46,6 +46,10 @@ public class Prenotazione {
 	@JoinColumn(name = "trasporto_id")
 	private Trasporto trasporto;
 
+	@ManyToOne
+	@JoinColumn(name = "ritorno_id")
+	private Trasporto ritorno;
+
 	@Column(precision = 2)
 	private double prezzo;
 

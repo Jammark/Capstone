@@ -65,6 +65,18 @@ public class MeteController {
 		}
 	}
 
+	@GetMapping("destinazioni/most_rated")
+	public ResponseEntity<List<DestinazionePayload>> getMostRated() {
+		List<Destinazione> lista = mSrv.findAllDestinazioni();
+		return ResponseEntity.ok(lista.stream().map(DestinazionePayload::new).toList());
+	}
+
+	@GetMapping("città/most_rated")
+	public ResponseEntity<List<CittàPayload>> getMostRatedCities() {
+		List<Città> lista = mSrv.findMostRatedCities();
+		return ResponseEntity.ok(lista.stream().map(CittàPayload::new).toList());
+	}
+
 	@PostMapping("/città")
 	public ResponseEntity<CittàPayload> createCittà(@Valid @RequestBody CittàPayload cp) {
 		try {

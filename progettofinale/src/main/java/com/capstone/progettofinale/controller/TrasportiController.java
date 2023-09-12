@@ -77,6 +77,15 @@ public class TrasportiController {
 		}
 	}
 
+	@GetMapping("/tratte/cerca")
+	public ResponseEntity<List<TrattaPayload>> getAllTratte(@RequestParam(required = true) String partenza,
+			@RequestParam(required = true) String arrivo,
+			@RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-M-dd") LocalDate data) {
+		log.info(data.toString());
+		List<Tratta> lista = srv.findTratteByArrivoEPartenza(partenza, arrivo, data);
+		return ResponseEntity.ofNullable(lista.stream().map(TrattaPayload::new).toList());
+	}
+
 	@PostMapping(value = "/voli", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<VoloPayload> createFlight(@Valid @RequestBody VoloPayload cp) {
 

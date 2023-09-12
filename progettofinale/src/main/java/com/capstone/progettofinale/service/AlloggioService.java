@@ -138,6 +138,8 @@ public class AlloggioService extends AbstractService {
 		return this.aRepo.save(found);
 	}
 
-
+	public Alloggio getMostRated(Long metaId) {
+		return this.repo.findMostRated(metaId).map(this::findById).orElse(null);
+	}
 
 }

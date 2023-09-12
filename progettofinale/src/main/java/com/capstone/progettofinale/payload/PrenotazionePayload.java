@@ -37,6 +37,8 @@ public class PrenotazionePayload {
 
 	private Long trasportoId;
 
+	private Long ritornoId;
+
 	@JsonSerialize(using = PrezzoSerializer.class)
 	private double prezzo;
 
@@ -50,6 +52,7 @@ public class PrenotazionePayload {
 		this.userId = Optional.ofNullable(p.getUser()).map(User::getId).orElse(null);
 		this.alloggioId = Optional.ofNullable(p.getAlloggio()).map(Alloggio::getId).orElse(null);
 		this.trasportoId = Optional.ofNullable(p.getTrasporto()).map(Trasporto::getId).orElse(null);
+		this.ritornoId = Optional.ofNullable(p.getRitorno()).map(Trasporto::getId).orElse(null);
 		this.prezzo = p.getPrezzo();
 	}
 }

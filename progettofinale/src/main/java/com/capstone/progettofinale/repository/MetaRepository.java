@@ -12,4 +12,5 @@ public interface MetaRepository extends JpaRepository<MetaTuristica, Long> {
 
 	public Optional<MetaTuristica> findByNome(String nome);
 
+
 }

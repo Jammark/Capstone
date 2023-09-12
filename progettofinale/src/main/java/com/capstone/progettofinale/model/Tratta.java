@@ -1,7 +1,7 @@
 package com.capstone.progettofinale.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +30,8 @@ public class Tratta extends Trasporto {
 	@JoinColumn(name = "arrivo_id")
 	private StazionePulman arrivo;
 
-	public Tratta(String nome, String descrizione, LocalTime durata, LocalDate dataPartenza, LocalDate dataArrivo,
+	public Tratta(String nome, String descrizione, Duration durata, LocalDateTime dataPartenza,
+			LocalDateTime dataArrivo,
 			int postiDisponibili, int postiOccupati, double prezzo, String aziendaDiTrasporto, StazionePulman partenza,
 			StazionePulman arrivo) {
 		super(nome, descrizione, durata, dataPartenza, dataArrivo, postiDisponibili, postiOccupati, prezzo);

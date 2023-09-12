@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,6 +54,13 @@ public class PrenotazioniController {
 	public ResponseEntity<List<AcquistoPayload>> getRiepilogoAcquisti() {
 		List<Acquisto> lista = pSrv.riepilogoAcquisti();
 		return ResponseEntity.ofNullable(lista.stream().map(AcquistoPayload::new).toList());
+	}
+
+	@GetMapping("/{metaId}")
+	@ResponseStatus(code = HttpStatus.OK)
+	public ResponseEntity<List<PrenotazionePayload>> getPacchetti(@PathVariable Long metaId,
+			@RequestParam(defaultValue = "1") int posti) {
+		return ResponseEntity.ofNullable(pSrv.getPacchetti(metaId, posti));
 	}
 
 	@PostMapping

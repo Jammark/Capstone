@@ -1,6 +1,7 @@
 package com.capstone.progettofinale.service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.capstone.progettofinale.common.IAuthenticationFacade;
 import com.capstone.progettofinale.model.Acquisto;
+import com.capstone.progettofinale.model.Alloggio;
 import com.capstone.progettofinale.model.Appartamento;
 import com.capstone.progettofinale.model.Hotel;
 import com.capstone.progettofinale.model.Prenotazione;
+import com.capstone.progettofinale.model.Volo;
 import com.capstone.progettofinale.payload.AcquistoPayload;
 import com.capstone.progettofinale.payload.PrenotazionePayload;
 import com.capstone.progettofinale.repository.AcquistoRepository;
@@ -44,6 +47,7 @@ public class PrenotazioneService {
 
 	@Autowired
 	private UserService uSrv;
+
 
 	private Long getUserId() {
 		return this.auth.getUser().getId();
@@ -80,8 +84,10 @@ public class PrenotazioneService {
 		Prenotazione p = new Prenotazione(pp.getData(), pp.getNumeroGiorni(), mSrv.findById(pp.getMetaId()),
 				uSrv.findById(this.getUserId()), aSrv.findById(pp.getAlloggioId()), tSrv.findById(pp.getTrasportoId()),
 				pp.getNumeroPosti());
+		p.setRitorno(tSrv.findById(pp.getRitornoId()));
 		p.setPrezzo(
-				p.getAlloggio().getPrezzo() * p.getNumeroGiorni() + p.getTrasporto().getPrezzo() * p.getNumeroPosti());
+				p.getAlloggio().getPrezzo() * p.getNumeroGiorni()
+						+ (p.getTrasporto().getPrezzo() + p.getRitorno().getPrezzo()) * p.getNumeroPosti());
 		
 		if(p.getAlloggio() instanceof Appartamento a && a.getCapienza() < p.getNumeroPosti()) {
 			throw new IllegalArgumentException("Capienza appartamento non sufficiente: "+a);
@@ -117,6 +123,24 @@ public class PrenotazioneService {
 	}
 
 	public List<Prenotazione> findDaPagare(Long userId) {
-		return Collections.EMPTY_LIST;// this.pRepo.findNonPagate(userId);
+		return this.pRepo.findNonPagate(userId);
+	}
+
+	public List<PrenotazionePayload> getPacchetti(Long metaId, int numPosti) {
+		Alloggio a = aSrv.getMostRated(metaId);
+		if (a == null) {
+			return Collections.EMPTY_LIST;
+		}
+		List<Volo> voli = tSrv.findVoliDisponibili(metaId);
+		return voli.stream().map(v -> {
+			Volo ritorno = tSrv.findRitorno(v.getArrivo().getId(), v.getPartenza().getId(),
+					v.getDataArrivo().plusDays(7).toLocalDate());
+			if (ritorno == null)
+				return null;
+			Long g = ChronoUnit.DAYS.between(v.getDataPartenza(), ritorno.getDataArrivo());
+			return new PrenotazionePayload(null, v.getDataPartenza().toLocalDate(), g.intValue(), metaId, getUserId(),
+					a.getId(),
+					v.getId(), ritorno.getId(), 0, numPosti);
+		}).filter(p -> p != null).toList();
 	}
 }
