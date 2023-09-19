@@ -110,6 +110,7 @@ public class MeteController {
 
 	@PutMapping("/città/{id}")
 	public ResponseEntity<CittàPayload> updateCity(@PathVariable Long id, @RequestBody CittàPayload cp) {
+		cp.setId(id);
 		Città c = this.mSrv.updateCittà(cp);
 		return new ResponseEntity<CittàPayload>(new CittàPayload(c), HttpStatus.OK);
 	}
@@ -117,6 +118,7 @@ public class MeteController {
 	@PutMapping("/destinazioni/{id}")
 	public ResponseEntity<DestinazionePayload> updateDestination(@PathVariable Long id,
 			@RequestBody DestinazionePayload dp) {
+		dp.setId(id);
 		Destinazione d = this.mSrv.updateDestinazione(dp);
 		return new ResponseEntity<DestinazionePayload>(new DestinazionePayload(d), HttpStatus.OK);
 	}

@@ -43,10 +43,16 @@ public class RatingService {
 
 	public Rating save(RatingPayload rp) {
 		if (rp.getAlloggioId() != null) {
+			Rating found = this.repo.findByUserIdAndAlloggioId(this.getUserId(), rp.getAlloggioId()).orElse(null);
+			if (found == null) {
 			User u = uSrv.findById(this.getUserId());
 			Alloggio a = aSrv.findById(rp.getAlloggioId());
 			Rating r = new Rating(u, a, this.checkRate(rp.getRate()));
 			return this.repo.save(r);
+		} else {
+			found.setRate(this.checkRate(rp.getRate()));
+			return this.repo.save(found);
+		}
 		} else {
 			throw new IllegalArgumentException("utente o allogio non specificati nel body: " + rp);
 		}

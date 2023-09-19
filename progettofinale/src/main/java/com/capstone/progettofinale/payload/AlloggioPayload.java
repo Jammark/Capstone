@@ -18,7 +18,7 @@ public class AlloggioPayload {
 	private Long metaId;
 	private Double prezzo;
 	private String urlImmagine;
-	private Integer rate;
+	private Integer rate = 0;
 
 	public AlloggioPayload(Alloggio a) {
 		this.id = a.getId();

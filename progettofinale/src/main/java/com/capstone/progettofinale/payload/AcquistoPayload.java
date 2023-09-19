@@ -28,6 +28,7 @@ public class AcquistoPayload {
 	private Long prenotazioneId;
 	@JsonSerialize(using = PrezzoSerializer.class)
 	private double prezzo;
+	private PrenotazionePayload prenotazione;
 
 	public AcquistoPayload(Acquisto a) {
 		this.id = a.getId();
@@ -35,6 +36,7 @@ public class AcquistoPayload {
 		this.userId = Optional.ofNullable(a.getUtente()).map(User::getId).orElse(null);
 		this.prenotazioneId = Optional.ofNullable(a.getPrenotazione()).map(Prenotazione::getId).orElse(null);
 		this.prezzo = a.getPrezzo();
+		this.prenotazione = Optional.ofNullable(a.getPrenotazione()).map(PrenotazionePayload::new).orElse(null);
 
 	}
 

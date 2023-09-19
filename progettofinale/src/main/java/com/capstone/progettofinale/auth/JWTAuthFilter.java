@@ -67,7 +67,9 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
 		return new AntPathMatcher().match("/auth/**", request.getRequestURI())
 				|| new AntPathMatcher().match("/mete/image/**", request.getServletPath())
-				|| new AntPathMatcher().match("/alloggi/image/**", request.getServletPath());
+				|| new AntPathMatcher().match("/alloggi/image/**", request.getServletPath())
+				|| new AntPathMatcher().match("/mete/città/most_rated", request.getServletPath())
+				|| new AntPathMatcher().match("/mete/destinazioni/most_rated", request.getServletPath());
 	}
 
 }

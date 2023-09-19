@@ -9,6 +9,7 @@ import com.capstone.progettofinale.model.Prenotazione;
 import com.capstone.progettofinale.model.Trasporto;
 import com.capstone.progettofinale.model.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +28,11 @@ public class PrenotazionePayload {
 	@JsonFormat(pattern = "yyyy-M-dd")
 	private LocalDate data;
 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@JsonFormat(pattern = "yyyy-M-dd")
+	private LocalDate dataFine;
+
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private int numeroGiorni;
 
 	private Long metaId;

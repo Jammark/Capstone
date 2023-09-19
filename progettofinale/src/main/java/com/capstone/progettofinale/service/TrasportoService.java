@@ -130,7 +130,8 @@ public class TrasportoService {
 	}
 
 	public List<Volo> findVoliByArrivoEPartenza(String partenzaNome, String arrivoNome, LocalDate data) {
-		return this.vRepo.findByPartenzaCittàNomeAndArrivoCittàNomeAndDataPartenza(partenzaNome, arrivoNome, data);
+		return this.vRepo.findByPartenzaCittàNomeAndArrivoCittàNomeAndDataPartenza(partenzaNome, arrivoNome,
+				data.atStartOfDay());
 	}
 
 	public List<Tratta> findTratteByArrivoEPartenza(String partenza, String arrivo, LocalDate data) {

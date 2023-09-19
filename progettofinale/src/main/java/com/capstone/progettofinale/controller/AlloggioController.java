@@ -58,6 +58,14 @@ public class AlloggioController {
 		}
 	}
 
+	@GetMapping("/hotels/meta/{metaId}")
+	public ResponseEntity<List<HotelPayload>> getHotels(@PathVariable Long metaId) {
+		List<Hotel> lista = aSrv.findHotelByMeta(metaId);
+		List<HotelPayload> body = lista.stream().map(HotelPayload::new).toList();
+		rSrv.setRatings(body);
+		return ResponseEntity.ok(body);
+	}
+
 	@GetMapping("/appartamenti")
 	public ResponseEntity<List<AppartamentoPayload>> getAllAppartamenti() {
 		List<Appartamento> lista = aSrv.findAllAppartamenti();
@@ -76,6 +84,14 @@ public class AlloggioController {
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@GetMapping("/appartamenti/meta/{metaId}")
+	public ResponseEntity<List<AppartamentoPayload>> getAppartamenti(@PathVariable Long metaId) {
+		List<Appartamento> lista = aSrv.findAppartamentoByMeta(metaId);
+		List<AppartamentoPayload> body = lista.stream().map(AppartamentoPayload::new).toList();
+		rSrv.setRatings(body);
+		return ResponseEntity.ok(body);
 	}
 
 	@PostMapping("/hotels")

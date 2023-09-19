@@ -81,7 +81,8 @@ public class PrenotazioneService {
 	}
 
 	public Prenotazione save(PrenotazionePayload pp) {
-		Prenotazione p = new Prenotazione(pp.getData(), pp.getNumeroGiorni(), mSrv.findById(pp.getMetaId()),
+		Long g = ChronoUnit.DAYS.between(pp.getData(), pp.getDataFine());
+		Prenotazione p = new Prenotazione(pp.getData(), g.intValue(), mSrv.findById(pp.getMetaId()),
 				uSrv.findById(this.getUserId()), aSrv.findById(pp.getAlloggioId()), tSrv.findById(pp.getTrasportoId()),
 				pp.getNumeroPosti());
 		p.setRitorno(tSrv.findById(pp.getRitornoId()));
@@ -101,7 +102,8 @@ public class PrenotazioneService {
 	public Acquisto acquistaPrenotazione(Long prenotazioneId) {
 		Prenotazione p = this.findById(prenotazioneId);
 		if (p.getUser() != null && p.getUser().getId().equals(getUserId())) {
-			AcquistoPayload ap = new AcquistoPayload(null, LocalDate.now(), getUserId(), prenotazioneId, p.getPrezzo());
+			AcquistoPayload ap = new AcquistoPayload(null, LocalDate.now(), getUserId(), prenotazioneId, p.getPrezzo(),
+					null);
 			return this.saveAcquisto(ap);
 		} else {
 			throw new IllegalArgumentException(
@@ -138,7 +140,8 @@ public class PrenotazioneService {
 			if (ritorno == null)
 				return null;
 			Long g = ChronoUnit.DAYS.between(v.getDataPartenza(), ritorno.getDataArrivo());
-			return new PrenotazionePayload(null, v.getDataPartenza().toLocalDate(), g.intValue(), metaId, getUserId(),
+			return new PrenotazionePayload(null, v.getDataPartenza().toLocalDate(), null, g.intValue(), metaId,
+					getUserId(),
 					a.getId(),
 					v.getId(), ritorno.getId(), 0, numPosti);
 		}).filter(p -> p != null).toList();

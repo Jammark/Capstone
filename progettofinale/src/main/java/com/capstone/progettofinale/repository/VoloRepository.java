@@ -1,6 +1,5 @@
 package com.capstone.progettofinale.repository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,7 @@ import com.capstone.progettofinale.model.Volo;
 public interface VoloRepository extends JpaRepository<Volo, Long> {
 
 	public List<Volo> findByPartenzaCittàNomeAndArrivoCittàNomeAndDataPartenza(String partenza, String arrivo,
-			LocalDate data);
+			LocalDateTime data);
 
 	@Query("SELECT v FROM Volo v JOIN Aereoporto a ON v.arrivo = a JOIN a.città c JOIN c.destinazione d WHERE (c.id = :param OR d.id = :param) AND v.dataPartenza BETWEEN :data AND :end")
 	public List<Volo> findVoliDisponibili(@Param("param") Long metaId, @Param("data") LocalDateTime data,

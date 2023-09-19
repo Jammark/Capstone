@@ -41,6 +41,10 @@ public class SecurityConfig {
 				.csrf(AbstractHttpConfigurer::disable);
 
 		http.authorizeHttpRequests(
+				auth -> auth.requestMatchers("/mete/città/most_rated", "/mete/destinazioni/most_rated").permitAll())
+				.csrf(AbstractHttpConfigurer::disable);
+
+		http.authorizeHttpRequests(
 				(authz) -> authz
 						.requestMatchers(HttpMethod.GET, "/mete/**", "/alloggi/**", "/stazioni/**", "/trasporti/**",
 								"/prenotazioni/**")

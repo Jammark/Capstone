@@ -10,5 +10,6 @@ import com.capstone.progettofinale.model.Acquisto;
 @Repository
 public interface AcquistoRepository extends JpaRepository<Acquisto, Long> {
 
+
 	public List<Acquisto> findByUtenteId(Long id);
 }
