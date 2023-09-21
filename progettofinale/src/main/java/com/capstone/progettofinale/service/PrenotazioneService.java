@@ -21,7 +21,10 @@ import com.capstone.progettofinale.repository.AcquistoRepository;
 import com.capstone.progettofinale.repository.HotelRepository;
 import com.capstone.progettofinale.repository.PrenotazioneRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class PrenotazioneService {
 
 	@Autowired
@@ -131,16 +134,21 @@ public class PrenotazioneService {
 	public List<PrenotazionePayload> getPacchetti(Long metaId, int numPosti) {
 		Alloggio a = aSrv.getMostRated(metaId);
 		if (a == null) {
+			log.info("nessun risultato per pacchetto.");
 			return Collections.EMPTY_LIST;
 		}
 		List<Volo> voli = tSrv.findVoliDisponibili(metaId);
+		log.info("pacchetti numero voli trovati: " + voli.size());
 		return voli.stream().map(v -> {
 			Volo ritorno = tSrv.findRitorno(v.getArrivo().getId(), v.getPartenza().getId(),
-					v.getDataArrivo().plusDays(7).toLocalDate());
-			if (ritorno == null)
+					v.getDataArrivo().plusDays(4).toLocalDate());
+			if (ritorno == null) {
+				log.info("nessun match per volo di ritorno.");
 				return null;
+			}
 			Long g = ChronoUnit.DAYS.between(v.getDataPartenza(), ritorno.getDataArrivo());
-			return new PrenotazionePayload(null, v.getDataPartenza().toLocalDate(), null, g.intValue(), metaId,
+			return new PrenotazionePayload(null, v.getDataPartenza().toLocalDate(),
+					ritorno.getDataPartenza().toLocalDate(), g.intValue(), metaId,
 					getUserId(),
 					a.getId(),
 					v.getId(), ritorno.getId(), 0, numPosti);

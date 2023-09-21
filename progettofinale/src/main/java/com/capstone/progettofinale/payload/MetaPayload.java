@@ -20,6 +20,7 @@ public abstract class MetaPayload {
 	@NotNull
 	private String descrizione;
 	private String imgUrl;
+	private Long rating;
 
 	public MetaPayload(MetaTuristica m) {
 		this.id = m.getId();

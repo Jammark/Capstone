@@ -28,7 +28,7 @@ public class PrenotazionePayload {
 	@JsonFormat(pattern = "yyyy-M-dd")
 	private LocalDate data;
 
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
 	@JsonFormat(pattern = "yyyy-M-dd")
 	private LocalDate dataFine;
 
