@@ -12,13 +12,13 @@ import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Entity
 @Table(name = "meta", uniqueConstraints = { @UniqueConstraint(columnNames = { "nome", "url_immagine" }) })
 @NoArgsConstructor
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
+
 public abstract class MetaTuristica {
 
 	@Id
@@ -31,6 +31,7 @@ public abstract class MetaTuristica {
 	private String descrizione;
 	@Column(name = "url_immagine", nullable = false)
 	private String urlImmagine;
+
 
 	public MetaTuristica(String nome, String descrizione, String urlImmagine) {
 		super();

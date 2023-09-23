@@ -60,5 +60,7 @@ public class PrenotazionePayload {
 		this.trasportoId = Optional.ofNullable(p.getTrasporto()).map(Trasporto::getId).orElse(null);
 		this.ritornoId = Optional.ofNullable(p.getRitorno()).map(Trasporto::getId).orElse(null);
 		this.prezzo = p.getPrezzo();
+		this.dataFine = this.data.plusDays(numeroGiorni);
+		this.numeroPosti = p.getNumeroPosti();
 	}
 }

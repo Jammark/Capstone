@@ -50,12 +50,19 @@ public class MetaService extends AbstractService {
 		return dRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Id destinazione non valido: " + id));
 	}
 
-	public List<Città> findAllCittà() {
-		return cRepo.findAll();
+	public List<CittàPayload> findAllCittà() {
+		return cRepo.findAll().stream().map(CittàPayload::new).map(cp -> {
+			cp.setNumHotels(this.getNumHotel(cp.getId()).intValue());
+			return cp;
+		}).toList();
 	}
 
 	public List<Destinazione> findAllDestinazioni() {
 		return dRepo.findAll();
+	}
+
+	public Long getNumHotel(Long metaId) {
+		return this.mRepo.findNumHotel(metaId);
 	}
 
 	public List<DestinazionePayload> findMostRated() {
@@ -74,6 +81,7 @@ public class MetaService extends AbstractService {
 			Città c = this.findCittàById(id);
 			CittàPayload cp = new CittàPayload(c);
 			cp.setRating((Long) t.get(1));
+			cp.setNumHotels(this.getNumHotel(c.getId()).intValue());
 			return cp;
 		}).toList();
 	}

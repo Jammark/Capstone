@@ -21,6 +21,7 @@ public class VoloPayload extends TrasportoPayload {
 	private Long partenzaId, arrivoId, stopId;
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private AereoportoPayload partenza, arrivo;
+	private Integer posti;
 
 	public VoloPayload(Volo v) {
 		super(v);

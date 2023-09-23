@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.progettofinale.auth.BadRequestException;
 import com.capstone.progettofinale.common.IAuthenticationFacade;
 import com.capstone.progettofinale.model.Acquisto;
 import com.capstone.progettofinale.model.Alloggio;
@@ -84,9 +86,22 @@ public class PrenotazioneService {
 	}
 
 	public Prenotazione save(PrenotazionePayload pp) {
+		boolean disp = this.aSrv.getDisponibilità(pp.getAlloggioId(), pp.getData(),
+				pp.getDataFine(),
+				pp.getNumeroPosti());
+		boolean dispVoli = tSrv.getDisponibilitàVolo(pp.getTrasportoId(), pp.getNumeroPosti())
+				&& tSrv.getDisponibilitàVolo(pp.getRitornoId(), pp.getNumeroPosti());
+		if (!disp) {
+			throw new BadRequestException(
+					"Posti non disponibili per alloggio: " + aSrv.findById(pp.getAlloggioId()).getNome());
+		}
+		if (!dispVoli) {
+			throw new BadRequestException("Posti non disponibili per i voli.");
+		}
 		Long g = ChronoUnit.DAYS.between(pp.getData(), pp.getDataFine());
-		Prenotazione p = new Prenotazione(pp.getData(), g.intValue(), mSrv.findById(pp.getMetaId()),
-				uSrv.findById(this.getUserId()), aSrv.findById(pp.getAlloggioId()), tSrv.findById(pp.getTrasportoId()),
+		Alloggio al = aSrv.findById(pp.getAlloggioId());
+		Prenotazione p = new Prenotazione(pp.getData(), g.intValue(), Optional.ofNullable(al.getMeta()).orElse(null),
+				uSrv.findById(this.getUserId()), al, tSrv.findById(pp.getTrasportoId()),
 				pp.getNumeroPosti());
 		p.setRitorno(tSrv.findById(pp.getRitornoId()));
 		p.setPrezzo(
@@ -141,7 +156,7 @@ public class PrenotazioneService {
 		log.info("pacchetti numero voli trovati: " + voli.size());
 		return voli.stream().map(v -> {
 			Volo ritorno = tSrv.findRitorno(v.getArrivo().getId(), v.getPartenza().getId(),
-					v.getDataArrivo().plusDays(4).toLocalDate());
+					v.getDataArrivo().plusDays(4).toLocalDate(), numPosti);
 			if (ritorno == null) {
 				log.info("nessun match per volo di ritorno.");
 				return null;

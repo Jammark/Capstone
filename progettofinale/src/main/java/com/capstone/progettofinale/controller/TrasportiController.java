@@ -57,8 +57,8 @@ public class TrasportiController {
 			@RequestParam(required = true) String arrivo,
 			@RequestParam(required = true) @DateTimeFormat(pattern = "yyyy-M-dd") LocalDate data) {
 		log.info(data.toString());
-		List<Volo> lista = srv.findVoliByArrivoEPartenza(partenza, arrivo, data);
-		return ResponseEntity.ofNullable(lista.stream().map(VoloPayload::new).toList());
+		List<VoloPayload> lista = srv.findVoliByArrivoEPartenza(partenza, arrivo, data);
+		return ResponseEntity.ofNullable(lista);
 	}
 
 	@GetMapping("/tratte")

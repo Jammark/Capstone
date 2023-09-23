@@ -35,8 +35,8 @@ public class MeteController {
 
 	@GetMapping("/città")
 	public ResponseEntity<List<CittàPayload>> getAllCities() {
-		List<Città> lista = mSrv.findAllCittà();
-		return ResponseEntity.ok(lista.stream().map(CittàPayload::new).toList());
+		List<CittàPayload> lista = mSrv.findAllCittà();
+		return ResponseEntity.ok(lista);
 	}
 
 	@GetMapping("/città/{id}")

@@ -1,7 +1,16 @@
 package com.capstone.progettofinale.service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +25,10 @@ import com.capstone.progettofinale.repository.AlloggioRepository;
 import com.capstone.progettofinale.repository.AppartamentoRepository;
 import com.capstone.progettofinale.repository.HotelRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class AlloggioService extends AbstractService {
 
 	@Autowired
@@ -70,6 +82,7 @@ public class AlloggioService extends AbstractService {
 	public void deleteAppartamento(Long id) {
 		aRepo.delete(this.findAppartamentoById(id));
 	}
+
 
 	public Hotel saveHotel(HotelPayload hp) {
 		Hotel h = new Hotel(hp.getNome(), hp.getDescrizione(), hp.getPrezzo(), mSrv.findById(hp.getMetaId()),
@@ -140,6 +153,33 @@ public class AlloggioService extends AbstractService {
 
 	public Alloggio getMostRated(Long metaId) {
 		return this.repo.findMostRated(metaId).map(this::findById).orElse(null);
+	}
+
+	public boolean getDisponibilità(Long id, LocalDate partenza, LocalDate ritorno, int posti) {
+		Long g = ChronoUnit.DAYS.between(partenza, ritorno);
+		List<ZonedDateTime> dates = new ArrayList<ZonedDateTime>();
+		for (int i = 0; i <= g; i++) {
+			dates.add(partenza.plusDays(i).atStartOfDay(ZoneId.systemDefault()));
+		}
+		SimpleDateFormat frmt = new SimpleDateFormat("yyyy-MM-dd");
+		String arrayString = dates.stream().map(d -> d.toInstant()).map(Date::from).map(frmt::format)
+				.map(s -> "'" + s + "'")
+				.collect(Collectors.joining(";"));
+		Optional<Appartamento> opt = this.aRepo.findById(id);
+		Boolean disp = opt.isPresent() ? opt
+				.map(a -> this.repo.findDisponibilitàAppartamentol(partenza, ritorno,
+						a.getId()))
+				.isPresent()
+				: this.hRepo.findById(id)
+						.map(h -> this.repo.findDisponibilitàHotel(partenza, ritorno, h.getId(), posti))
+						.orElse(Collections.singletonList(null)).size() == 0;
+		log.info("disponibilità a risultato: "
+				+ this.repo.findDisponibilitàAppartamentol(partenza, ritorno, id) + " " + opt.isPresent());
+		log.info("disponibilità h risultato: " + this.repo.findDisponibilitàHotel(partenza, ritorno, id, posti).size()
+				+ " "
+				+ this.hRepo.findById(id).isPresent());
+		log.info("disponibilità risultato: " + disp);
+		return disp;
 	}
 
 }

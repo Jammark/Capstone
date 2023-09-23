@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,12 +39,19 @@ public class AuthController {
 
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserResponsePayload saveUser(@Valid @RequestBody UserRequestPayload body) {
+	public ResponseEntity<UserResponsePayload> saveUser(@Valid @RequestBody UserRequestPayload body) {
 		try {
+			try {
+				usersService.findByUsername(body.getEmail());
+				throw new BadRequestException("Username utente già registrato.");
+			} catch (IllegalArgumentException e) {
+				log.info("Email utente non registrata");
+			}
+
 			User user = usersService.saveUser(convertPayload(body));
 			UserResponsePayload up = new UserResponsePayload(user.getId(), user.getUsername(), user.getNome(),
 					user.getCognome(), user.getDataDiNascita(), user.getRuolo().name());
-			return up;
+			return ResponseEntity.ofNullable(up);
 		} catch (DataIntegrityViolationException e) {
 			log.error(e.getMessage());
 			throw new BadRequestException("username già esistente.");

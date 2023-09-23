@@ -17,4 +17,6 @@ public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Long
 	@Query(value = "SELECT p FROM Prenotazione p LEFT JOIN Acquisto a ON a.prenotazione = p WHERE p.user.id = :param AND a is NULL", nativeQuery = false)
 	public List<Prenotazione> findNonPagate(@Param("param") Long userId);
 
+
+
 }

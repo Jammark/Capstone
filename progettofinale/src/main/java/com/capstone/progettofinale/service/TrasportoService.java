@@ -129,9 +129,20 @@ public class TrasportoService {
 		t.setPrezzo(Optional.ofNullable(tp.getPrezzo()).orElse(t.getPrezzo()));
 	}
 
-	public List<Volo> findVoliByArrivoEPartenza(String partenzaNome, String arrivoNome, LocalDate data) {
+	public List<VoloPayload> findVoliByArrivoEPartenza(String partenzaNome, String arrivoNome, LocalDate data) {
 		return this.vRepo.findByPartenzaCittàNomeAndArrivoCittàNomeAndDataPartenza(partenzaNome, arrivoNome,
-				data.atStartOfDay());
+				data.atStartOfDay()).stream().map(v -> {
+					VoloPayload vp = new VoloPayload(v);
+					vp.setPosti(v.getPostiDisponibili()
+							- ((Long) this.vRepo.findPostiRimanenti(v.getId()).get(1)).intValue());
+					return vp;
+
+				}).toList();
+	}
+
+	public boolean getDisponibilitàVolo(Long id, int posti) {
+		Volo v = this.findVoloById(id);
+		return v.getPostiDisponibili() - (Long) this.vRepo.findPostiRimanenti(id).get(1) > posti;
 	}
 
 	public List<Tratta> findTratteByArrivoEPartenza(String partenza, String arrivo, LocalDate data) {
@@ -140,10 +151,12 @@ public class TrasportoService {
 
 	public List<Volo> findVoliDisponibili(Long metaId) {
 		return this.vRepo.findVoliDisponibili(metaId, LocalDate.now().atStartOfDay(),
-				LocalDate.now().plusDays(10).atStartOfDay());
+				LocalDate.now().plusDays(10).atStartOfDay(), 1).stream().map(this.vRepo::findById)
+				.map(e -> e.orElse(null)).filter(e -> e != null).toList();
 	}
 
-	public Volo findRitorno(Long pId, Long aId, LocalDate data) {
-		return this.vRepo.findVolorRitorno(pId, aId, data.atStartOfDay()).orElse(null);
+	public Volo findRitorno(Long pId, Long aId, LocalDate data, int posti) {
+		return this.vRepo.findVolorRitorno(pId, aId, data.atStartOfDay(), posti).map(this.vRepo::findById).orElse(null)
+				.orElse(null);
 	}
 }

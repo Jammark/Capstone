@@ -34,12 +34,14 @@ public class ExceptionsHandler {
 	@ExceptionHandler(BadRequestException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorsPayload handleBadRequest(BadRequestException e) {
+		e.printStackTrace();
 		return new ErrorsPayload(e.getMessage(), new Date(), 13212);
 	}
 
 	@ExceptionHandler(IllegalArgumentException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorsPayload handleIllegalArgument(IllegalArgumentException e) {
+		e.printStackTrace();
 		return new ErrorsPayload(e.getMessage(), new Date(), 13212);
 	}
 
