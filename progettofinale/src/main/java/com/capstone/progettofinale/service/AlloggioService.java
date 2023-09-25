@@ -169,7 +169,7 @@ public class AlloggioService extends AbstractService {
 		Boolean disp = opt.isPresent() ? opt
 				.map(a -> this.repo.findDisponibilitàAppartamentol(partenza, ritorno,
 						a.getId()))
-				.isPresent()
+				.get().isEmpty()
 				: this.hRepo.findById(id)
 						.map(h -> this.repo.findDisponibilitàHotel(partenza, ritorno, h.getId(), posti))
 						.orElse(Collections.singletonList(null)).size() == 0;

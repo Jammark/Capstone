@@ -23,7 +23,7 @@ public interface AlloggioRepository extends JpaRepository<Alloggio, Long> {
 	public List<Tuple> findDisponibilitàHotel(@Param("p") LocalDate partenza, @Param("r") LocalDate ritorno,
 			@Param("id") Long alloggioId, @Param("posti") int posti);
 
-	@Query("SELECT a.id FROM Appartamento a JOIN Prenotazione p ON p.alloggio.id = a.id WHERE a.id = :id AND (p.data BETWEEN :p AND :r OR DATEADD(DAY,p.numeroGiorni,p.data) BETWEEN :p AND :r) GROUP BY a.id")
+	@Query("SELECT a.id FROM Appartamento a JOIN Prenotazione p ON p.alloggio.id = a.id WHERE a.id = :id AND p IS NOT NULL AND (p.data BETWEEN :p AND :r OR DATEADD(DAY,p.numeroGiorni,p.data) BETWEEN :p AND :r) GROUP BY a.id")
 	public Optional<Long> findDisponibilitàAppartamentol(@Param("p") LocalDate partenza,
 			@Param("r") LocalDate ritorno,
 			@Param("id") Long alloggioId);
