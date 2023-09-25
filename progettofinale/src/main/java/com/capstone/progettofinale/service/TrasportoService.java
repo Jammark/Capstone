@@ -151,12 +151,13 @@ public class TrasportoService {
 
 	public List<Volo> findVoliDisponibili(Long metaId) {
 		return this.vRepo.findVoliDisponibili(metaId, LocalDate.now().atStartOfDay(),
-				LocalDate.now().plusDays(10).atStartOfDay(), 1).stream().map(this.vRepo::findById)
+				LocalDate.now().plusDays(100).atStartOfDay(), 1).stream().map(this.vRepo::findById)
 				.map(e -> e.orElse(null)).filter(e -> e != null).toList();
 	}
 
 	public Volo findRitorno(Long pId, Long aId, LocalDate data, int posti) {
-		return this.vRepo.findVolorRitorno(pId, aId, data.atStartOfDay(), posti).map(this.vRepo::findById).orElse(null)
+		Optional<Volo> val = this.vRepo.findVolorRitorno(pId, aId, data.atStartOfDay(), posti).map(this.vRepo::findById)
 				.orElse(null);
+		return val == null ? null : val.orElse(null);
 	}
 }
