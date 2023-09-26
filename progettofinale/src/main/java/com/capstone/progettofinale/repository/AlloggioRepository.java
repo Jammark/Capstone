@@ -16,7 +16,7 @@ import jakarta.persistence.Tuple;
 @Repository
 public interface AlloggioRepository extends JpaRepository<Alloggio, Long> {
 
-	@Query("SELECT a.id, SUM(r.rate) sr FROM Alloggio a JOIN Rating r ON r.alloggio = a WHERE a.meta.id = :param GROUP BY a.id ORDER BY sr DESC LIMIT 1")
+	@Query("SELECT a.id, SUM(r.rate) sr FROM Alloggio a JOIN Rating r ON r.alloggio = a JOIN Città c ON c.id = a.meta.id WHERE a.meta.id = :param OR c.destinazione.id = :param GROUP BY a.id ORDER BY sr DESC LIMIT 1")
 	public Optional<Long> findMostRated(@Param("param") Long metaId);
 
 	@Query(value = "SELECT d, h.numeroDoppie cd, h.numeroSingole cs FROM Hotel h JOIN Prenotazione p ON p.alloggio.id = h.id JOIN (SELECT GENERATE_SERIES(cast( :p as date), cast(:r as date), '1 day' ) AS d) ON d BETWEEN p.data AND DATEADD(DAY,p.numeroGiorni,p.data) WHERE h.id = :id AND ( p.data BETWEEN :p AND :r OR DATEADD(DAY,p.numeroGiorni,p.data) BETWEEN :p AND :r) GROUP BY d, cd, cs HAVING SUM(p.numeroPosti) > h.numeroDoppie * 2 + h.numeroSingole - :posti")

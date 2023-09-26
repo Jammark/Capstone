@@ -152,7 +152,7 @@ public class PrenotazioneService {
 			log.info("nessun risultato per pacchetto.");
 			return Collections.EMPTY_LIST;
 		}
-		List<Volo> voli = tSrv.findVoliDisponibili(metaId);
+		List<Volo> voli = tSrv.findVoliDisponibili(a.getMeta().getId());
 		log.info("pacchetti numero voli trovati: " + voli.size());
 		return voli.stream().map(v -> {
 			Volo ritorno = tSrv.findRitorno(v.getArrivo().getId(), v.getPartenza().getId(),
