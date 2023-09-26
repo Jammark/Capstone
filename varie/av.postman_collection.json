@@ -1,0 +1,1771 @@
+{
+	"info": {
+		"_postman_id": "57bd8bc6-5a79-4b95-baab-5ced50a257bc",
+		"name": "av",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"super.admin@test.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3014/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3014",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Marco\",\n    \"surname\":\"Di Nicola\",\n    \"email\":\"marco.dinicola@yahoo.it\",\n    \"password\":\"prova12\",\n    \"dataDiNascita\":\"1988-04-25\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3013/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3013",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new città",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"Roma\",\n    \"descrizione\":\"capitale italiana\",\n    \"imgUrl\": \"https://www.turismoroma.it/sites/default/files/Roma%20in%20breve.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/mete/città",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"città"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new destinazione",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\" : \"Francia\",\n    \"descrizione\" : \"prova\",\n    \"contenutoPrincipale\": \"prova\",\n    \"contenutoSecondario\": \"prova\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3015/mete/destinazioni",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3015",
+					"path": [
+						"mete",
+						"destinazioni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agg città",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/mete/destinazioni/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"destinazioni",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list città",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3016/mete/città",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3016",
+					"path": [
+						"mete",
+						"città"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list dest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "immagini",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/alloggi/image/Appartamento3.jpg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"image",
+						"Appartamento3.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new hotel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Hotel K2\",\n    \"descrizione\": \"turismo montano\",\n    \"numStelle\" : 4,\n    \"numSingole\": 20,\n    \"numDoppie\": 30,\n    \"metaId\": 2,\n    \"prezzo\": 50.00,\n    \"urlImmagine\":\"https://www.google.com/imgres?imgurl=https%3A%2F%2Fantropocene.it%2Fwp-content%2Fuploads%2F2021%2F05%2FK2.jpg&tbnid=iSFAtwn_v_B-mM&vet=12ahUKEwi-6YHp6JqBAxVn8rsIHT1JCn0QMygGegQIARA8..i&imgrefurl=https%3A%2F%2Fantropocene.it%2F2021%2F05%2F05%2Fk2%2F&docid=3HjyvZ0-uQQL_M&w=1920&h=1080&q=k2&client=firefox-b-d&ved=2ahUKEwi-6YHp6JqBAxVn8rsIHT1JCn0QMygGegQIARA8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/alloggi/hotels",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"hotels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica hotel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"urlImmagine\":\"https://antropocene.it/wp-content/uploads/2021/05/K2.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/alloggi/hotels/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"hotels",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new appart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Appartamento5\",\n    \"descrizione\": \"turismo montano z\",\n    \"urlImmagine\": \"https://www.buttalapasta.it/wp-content/uploads/2016/01/hamburger-di-carne-americano.jpg\",\n    \"prezzo\": 60.00,\n    \"capienza\": 4,\n    \"metaId\": 2\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/alloggi/appartamenti",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"appartamenti"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica appart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"urlImmagine\": \"https://www.filippocoltro.it/ecms/image/lavori-arredamento.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/alloggi/appartamenti/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"appartamenti",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list hotel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list appartam",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crea aereoporto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Linate\",\n    \"località\":\"Milano\",\n    \"sigla\": \"LNTM\",\n    \"kmDistanza\": 40\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/stazioni/aereoporti",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"aereoporti"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crea stz pulman",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Tiburtina\",\n    \"località\":\"Roma\",\n    \"sigla\": \"TBRM\",\n    \"numeroStalli\": 8\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/stazioni/pulman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"pulman"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica aereoporto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n    {\n    \"nome\": \"Linate\",\n    \"località\":\"Milano\",\n    \"sigla\": \"LNTM\",\n    \"kmDistanza\": 40\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/stazioni/aereoporti/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"aereoporti",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica stz pulman",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Linate\",\n    \"località\":\"Milano\",\n    \"sigla\": \"LNTM\",\n    \"numStalli\": 7\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3018/stazioni/pulman/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"pulman",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista aereoporti",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/stazioni/aereoporti",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"aereoporti"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista stz pilman",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancella aereoporto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/stazioni/aereoporti/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"aereoporti",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancella stz pulman",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/stazioni/pulman/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"pulman",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crea volo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"Linate-Ciampino\",\n    \"descrizione\":\"volo Milano Roma\",\n    \"durata\": \"2:15\",\n    \"dataPartenza\": \"2020-4-16\",\n    \"dataArrivo\": \"2020-4-16\",\n    \"postiDisponibili\": 80,\n    \"compagnia\": \"air france\",\n    \"partenzaId\": 1,\n    \"arrivoId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/trasporti/aereoporti",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"aereoporti"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crea tratta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"Turismo Bologna2\",\n    \"descrizione\":\"pulman Bologna Roma\",\n    \"durata\": \"6:15\",\n    \"dataPartenza\": \"2020-8-16\",\n    \"dataArrivo\": \"2020-8-17\",\n    \"postiDisponibili\": 60,\n    \"nomeAzienda\": \"gp turismo\",\n    \"partenzaId\": 2,\n    \"arrivoId\": 7,\n    \"prezzo\": 60.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/trasporti/pulman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"pulman"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica volo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"Linate-Ciampino\",\n    \"descrizione\":\"volo Milano Roma\",\n    \"durata\": \"2:15\",\n    \"dataPartenza\": \"2020-4-16\",\n    \"dataArrivo\": \"2020-4-16\",\n    \"postiDisponibili\": 80,\n    \"compagnia\": \"air france\",\n    \"partenzaId\": 1,\n    \"arrivoId\": 2,\n    \"stopId\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/trasporti/voli/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"voli",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica tratta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"nome\":\"Turismo Bologna\",\n    \"descrizione\":\"pulman Bologna Roma\",\n    \"durata\": \"6:15\",\n    \"dataPartenza\": \"2020-5-16\",\n    \"dataArrivo\": \"2020-5-17\",\n    \"postiDisponibili\": 60,\n    \"nomeAzienda\": \"gp turismo\",\n    \"partenzaId\": 1,\n    \"arrivoId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/trasporti/pulman/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"pulman",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista voli",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/trasporti/voli",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"voli"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista tratte",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/trasporti/tratte",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"tratte"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancella volo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/trasporti/voli/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"voli",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancella tratta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/trasporti/tratte/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"tratte",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca volo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/trasporti/voli/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"voli",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca tratta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/trasporti/tratte/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"tratte",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca città",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca destinazione",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/mete/destinazioni/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"destinazioni",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca hotel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/alloggi/hotel/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"hotel",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca appart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/alloggi/appartamenti/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"appartamenti",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca aereoporto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/stazioni/aereoporti/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"aereoporti",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca stz pulman",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/stazioni/pulman/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"pulman",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vota alloggi",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"rate\": 4,\n    \"alloggioId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/ratings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista prentz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/prenotazioni",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"prenotazioni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saldo prenotz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/prenotazioni/saldo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"prenotazioni",
+						"saldo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "riepilogo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prenota",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": \"2020-4-30\",\n    \"numeroGiorni\": 10,\n    \"metaId\": 4,\n    \"alloggioId\" : 2,\n    \"trasportoId\" : 4,\n    \"prezzo\" : 400.00,\n    \"numeroPosti\": 4\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/prenotazioni",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"prenotazioni"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "acquista",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/prenotazioni/acquisti/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"prenotazioni",
+						"acquisti",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancella città",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/mete/città/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"città",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancella destinzaione",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/mete/destinazioni/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"destinazioni",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "camcella hotel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/alloggi/hotels/16",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"hotels",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancella appart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/alloggi/appartamenti/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"appartamenti",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca voli",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cerca tratte",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/trasporti/tratte/cerca?partenza=Roma&arrivo=Milano&data=2020-10-15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"tratte",
+						"cerca"
+					],
+					"query": [
+						{
+							"key": "partenza",
+							"value": "Roma"
+						},
+						{
+							"key": "arrivo",
+							"value": "Milano"
+						},
+						{
+							"key": "data",
+							"value": "2020-10-15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "most rated dest",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/mete/destinazioni/most_rated",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"destinazioni",
+						"most_rated"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "most rated cities",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/mete/città/most_rated",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"città",
+						"most_rated"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pacchetti",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3018/prenotazioni/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"prenotazioni",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica città",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0Njg2MzA2LCJleHAiOjE2OTUyOTExMDZ9.eq3EDyeB7GurJ8OuTGsg5cUbPn6VDtq7-rYQYvM74mM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\":\"Milano\",\n    \"descrizione\":\"capoluogo lombardo\",\n    \"imgUrl\": \"https://www.turismoroma.it/sites/default/files/Roma%20in%20breve.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/mete/città/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"città",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifica dest",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0Njg2MzA2LCJleHAiOjE2OTUyOTExMDZ9.eq3EDyeB7GurJ8OuTGsg5cUbPn6VDtq7-rYQYvM74mM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \n    \"imgUrl\": \"https://hips.hearstapps.com/hmg-prod/images/bologna-01-1531212414.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3018/mete/destinazioni/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"destinazioni",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "appart by meta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
