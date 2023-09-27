@@ -28,6 +28,7 @@ public abstract class MetaTuristica {
 
 	@Column(unique = true, nullable = false)
 	private String nome;
+	@Column(length = 600)
 	private String descrizione;
 	@Column(name = "url_immagine", nullable = false)
 	private String urlImmagine;

@@ -21,3 +21,11 @@ prima di avvia re l'applicazione eseguire il test di JUnit ProgettofinaleApplica
 # funzionalità
 
 Applicazione web che permette di consultare un catalogo di mete turistiche e prenotare camere, alloggi e voli per le proprie vacanze; è inoltre possibile votare gli hotel e gli appartamenti, verificare le prenotazioni effettuate ed acquistarle. In più le mete più gettonate sono disponibili per shortcut con a disposizione pacchetti viaggio last minute.
+
+# dati
+
+I voli disponibili sono solo partendo da Roma ad eccezione dei voli tra Roma e Milano per raggiungere Roma partendo da Milano.
+Le date dei voli disponibili sono:
+1. partenze in date 2023-10-20 e 2023-10-30
+2. ritorni in date 2023-10-26 e 2023-11-03
+per tutte le mete

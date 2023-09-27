@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3
 -- Dumped by pg_dump version 15.3
 
--- Started on 2023-09-27 10:21:43 CEST
+-- Started on 2023-09-27 22:34:03 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -148,8 +148,8 @@ ALTER TABLE public."città" OWNER TO postgres;
 --
 
 CREATE TABLE public.destinazioni (
-    contenuto_principale character varying(255),
-    contenuto_secondario character varying(255),
+    contenuto_principale character varying(400),
+    contenuto_secondario character varying(400),
     meta_id bigint NOT NULL
 );
 
@@ -180,7 +180,7 @@ ALTER TABLE public.hotels OWNER TO postgres;
 
 CREATE TABLE public.meta (
     meta_id bigint NOT NULL,
-    descrizione character varying(255),
+    descrizione character varying(600),
     nome character varying(255),
     url_immagine character varying(255),
     num_hotels integer
@@ -545,6 +545,9 @@ COPY public.acquisti (stazione_id, data, prezzo, prenotazione_id, utente_id) FRO
 5	2023-09-20	750	4	2
 6	2023-09-21	600	2	2
 7	2023-09-25	750	7	2
+8	2023-09-27	1500	27	7
+9	2023-09-27	620	31	7
+10	2023-09-27	1280	34	7
 \.
 
 
@@ -638,19 +641,19 @@ COPY public.appartamenti (capienza, alloggio_id) FROM stdin;
 4	12
 4	14
 4	15
-0	19
-0	32
-0	22
-0	23
-0	26
-0	29
-0	35
-0	38
-0	41
-0	44
-0	47
-0	50
-0	53
+4	35
+4	32
+4	19
+4	22
+4	23
+4	26
+4	29
+4	38
+4	41
+4	44
+4	47
+4	50
+4	53
 \.
 
 
@@ -684,13 +687,13 @@ COPY public."città" (meta_id, destinazione_id) FROM stdin;
 --
 
 COPY public.destinazioni (contenuto_principale, contenuto_secondario, meta_id) FROM stdin;
-prova	prova	2
-prova	prova	10
-prova	prova	12
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	16
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	19
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	22
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	25
+La cultura francese è ricca, varia e antica, e riflette le sue culture regionali e l'influenza delle ondate migratorie avvenute nel corso delle varie epoche. La sua capitale, Parigi - la Ville lumière - è stata a lungo un crocevia culturale importantissimo (la Sorbona), accogliendo artisti provenienti da ogni settore.	Patria di molti filosofi (il XVII secolo o Grand Siècle, e il XVIII secolo, o Età dei Lumi, sono stati i secoli d'oro per la Francia), la cultura francese ha lasciato al mondo la lingua della diplomazia, alcune delle concezioni universali dell'uomo, oltre a numerose scoperte e realizzazioni tecniche e mediche. 	2
+Nel corso dei secoli l'Italia, secondo tutti gli storici, ha portato un contributo di primo piano alla cultura mondiale. In particolare nei due periodi in cui il territorio italiano fu il centro della civiltà del tempo, ovvero durante l'Impero romano e il Rinascimento, il ruolo che ebbe nella storia della conoscenza umana fu di grande rilevanza.	 Dai templi greci ai borghi medievali, dalle terme romane alle ville settecentesche, l'Italia possiede molteplici monumenti nazionali, dichiarati tali da una legge apposita che ne riconosce l'importanza culturale e artistica per la comunità.	10
+La Germania divenne, a partire dalla caduta dell'Impero romano d'Occidente, centrale nella scena storica, politica e culturale dell'Europa. Nell'Alto Medioevo città come Spira, Magonza e Bamberga videro la costruzione di superbe cattedrali romaniche mentre il gotico tardò ad affermarsi in Germania. 	 Ma fu in particolar modo nei secoli XVIII e XIX che la Germania divenne un polo culturale senza eguali vedendo la nascita di diverse correnti artistiche e letterarie come il romanticismo e lo "Sturm und Drang" ma anche il periodo dell'attività di filosofi come per esempio Immanuel Kant, e di pittori come Georg Friedrich Grebner. 	12
+Dal 1130 al 1816, per ben 686 anni, l'isola fu racchiusa nell'entità statale del Regno di Sicilia. La Sicilia fu unita al Regno d'Italia nel 1860 con un plebiscito[16], in seguito alla spedizione dei Mille, guidata da Giuseppe Garibaldi durante il Risorgimento.	Ufficialmente denominata Regione Siciliana, è una regione italiana autonoma a statuto speciale.	16
+Ricca di montagne, boschi, pianure, territori in gran parte disabitati, corsi d'acqua, coste rocciose e lunghe spiagge sabbiose, per la varietà dei suoi ecosistemi l'isola è stata definita metaforicamente come un micro-continente.	In epoca moderna molti viaggiatori e scrittori hanno esaltato la sua bellezza, rimasta incontaminata almeno fino all'età contemporanea[16], nonché immersa in un paesaggio che ospita le vestigia della civiltà nuragica.	19
+La posizione della Puglia è stata sicuramente un'arma a doppio taglio da un punto di vista economico e culturale. Ubicazione fortunata in epoca classica perché era il ponte naturale per l'Oriente, la Puglia risente tutt'oggi della sua peculiarità di confine culturale tra un Occidente romano-germanico e un Oriente greco-bizantino.	La Puglia conta di 2 Parchi nazionali (il Parco nazionale del Gargano, istituito nel 1991 ed esteso per 118 144 ettari, ed il Parco nazionale dell'Alta Murgia, istituito nel 2006 ed esteso per 67 739), 3 Aree marine protette (Torre Guaceto, le Isole Tremiti e Porto Cesareo), 11 Parchi regionali, 17 Riserve statali e 7 riserve regionali.	22
+La Toscana è universalmente nota per la sua grandissima ricchezza di monumenti e opere d'arte: celebri in tutto il mondo sono le città di Firenze, Pisa, Siena. 	L'Etruria fu il cuore della civiltà etrusca e comprendeva quasi l'intero territorio della Toscana attuale. Delle ricche e fiorenti città etrusche meridionali restano straordinari reperti soprattutto nelle zone della Maremma, del litorale livornese, dell'entroterra senese e grossetano. Di eccezionale importanza sono le necropoli etrusche degne di nota, come Sovana, Vetulonia e Populonia.	25
 \.
 
 
@@ -701,7 +704,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 --
 
 COPY public.hotels (numero_doppie, num_doppie_occupate, numero_singole, num_singole_occupate, stelle, alloggio_id) FROM stdin;
-50	0	25	0	5	17
 50	0	25	0	5	18
 30	3	20	0	4	2
 30	0	25	0	5	20
@@ -722,12 +724,13 @@ COPY public.hotels (numero_doppie, num_doppie_occupate, numero_singole, num_sing
 30	0	25	0	4	43
 30	0	25	0	4	45
 30	0	25	0	5	46
-30	0	25	0	5	48
 30	0	25	0	4	49
 30	0	25	0	3	51
 30	0	25	0	2	52
 30	0	25	0	3	54
 30	0	25	0	5	55
+50	1	25	1	5	17
+30	0	25	1	5	48
 \.
 
 
@@ -738,26 +741,26 @@ COPY public.hotels (numero_doppie, num_doppie_occupate, numero_singole, num_sing
 --
 
 COPY public.meta (meta_id, descrizione, nome, url_immagine, num_hotels) FROM stdin;
-9	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Roma	Roma.jpg	\N
-14	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Bologna	Bologna.jpg	\N
-15	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Milano	Milano.jpg	\N
-12	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Germania	Germania.jpg	\N
-10	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Italia	Italia.jpg	\N
-2	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Francia	Francia.jpg	\N
-16	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Sicilia	Sicilia.jpg	\N
-17	capoluogo siciliano	Palermo	Palermo.jpg	\N
-18	città siciliana	Agrigento	Agrigento.jpg	\N
-19	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Sardegna	Sardegna.jpg	\N
-20	capoluogo sardo	Cagliari	Cagliari.jpg	\N
-21	città sarda	Olbia	Olbia.jpg	\N
-22	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Puglia	Puglia.jpg	\N
-23	città pugliese	Lecce	Lecce.jpg	\N
-24	città pugliese	Bari	Bari.jpg	\N
-25	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.	Toscana	Toscana.jpg	\N
-26	città toscana	Firenze	Firenze.jpg	\N
-27	città toscana	Pisa	Pisa.jpg	\N
-28	capitale francese	Parigi	Parigi.jpg	\N
-29	capitale tedesca	Berlino	Berlino.jpg	\N
+20	Cagliari e la sua area demologica presentano molte manifestazioni antropologiche peculiari, eredità dei vari popoli che hanno influenzato la storia della città.Numerose sono le feste religiose che la città ha praticato nel corso dei secoli. Molte si svolgono ancora oggi, mentre di altre se ne è mantenuto solo il ricordo nella memoria orale o nella tradizione letteraria. 	Cagliari	Cagliari.jpg	\N
+21	Dal 2005 è stata capoluogo, insieme a Tempio Pausania, della provincia di Olbia-Tempio, soppressa nel 2016 e operativamente sostituita dalla "zona omogenea di Olbia-Tempio" per l'esercizio delle funzioni provinciali nell'ambito della provincia di Sassari. Una volta operativa la riforma degli enti locali sardi del 2021, Olbia condividerà il capoluogo dell'istituenda Provincia del Nord-Est Sardegna con la città di Tempio Pausania. È stata l'antica capitale del Giudicato di Gallura e la prima sede vescovile della Gallura (Diocesi di Civita – Ampurias sino al 1839). 	Olbia	Olbia.jpg	\N
+23	Le antiche origini messapiche e i resti archeologici della dominazione romana la inseriscono tra le città d'arte d'Italia, tanto da essere denominata la "Signora del Barocco". La città, infatti, si distingue per la ricchezza e l'esuberanza del barocco tipicamente seicentesco delle chiese e dei palazzi del centro, costruiti nella locale pietra leccese, calcare molto adatto alla lavorazione con lo scalpello. Lo sviluppo architettonico e l'arricchimento decorativo delle facciate fu particolarmente curato durante il Regno di Napoli. 	Lecce	Lecce.jpg	\N
+16	Il territorio della regione è costituito quasi interamente dall'isola omonima, la più grande delle isole italiane e del Mediterraneo, la settima d'Europa, nonché la 45ª isola più estesa nel mondo, bagnata a nord dal Mar Tirreno, a ovest dal Canale di Sicilia, a sud-ovest dal mar di Sicilia, a sud-est dal canale di Malta, a est dal mar Ionio e a nord-est dallo stretto di Messina, che la separa dalla Calabria, con la parte rimanente che è costituita dagli arcipelaghi delle Eolie, delle Egadi e delle Pelagie, nonché dalle isole di Ustica e Pantelleria. 	Sicilia	Sicilia.jpg	\N
+22	La Puglia è la regione più orientale d'Italia: la località più a est è Punta Palascìa (Otranto), distante 72 chilometri da Capo Linguetta, la punta più settentrionale della Penisola di Karaburun, in Albania, e 80 chilometri dall'isola greca di Fanò.  	Puglia	Puglia.jpg	\N
+10	Crocevia di numerose civiltà, l'Italia antica fu unificata da Roma, diventando il centro amministrativo, economico, culturale e politico dell'Impero romano. Dopo la caduta dell'Impero romano d'Occidente, l'Italia medievale fu soggetta a invasioni e dominazioni di popolazioni barbariche, perdendo la propria unità politica. Tra XV e XVI secolo, con la diffusione dell'Umanesimo e del Rinascimento, divenne nuovamente il centro culturale del mondo occidentale. La penisola conobbe poi la controriforma, il barocco e il neoclassicismo. 	Italia	Italia.jpg	\N
+9	Nella sua veste di capitale d'Italia la città possiede due Archivi di Stato: l'Archivio Centrale dello Stato, che conserva (con alcune eccezioni) la documentazione prodotta dagli organi e dagli uffici dello Stato italiano sin dalla sua unità e l'Archivio di Stato di Roma, che fino al 1953 ha svolto anche le funzioni del primo.Inoltre in Vaticano ha sede l'Archivio segreto vaticano.La città dispone di numerose biblioteche, di vari tipi e dimensioni. 	Roma	Roma.jpg	\N
+14	Nella cultura popolare Bologna è nota come "la grassa" (per la cucina), "la dotta" (per l'università), "la rossa" (per il colore dei mattoni degli edifici del centro storico, anche se spesso l'aggettivo è riferito al pensiero politico "rosso" diffuso tra la popolazione della città) e "la turrita" (per l'elevato numero di torri costruite nel periodo medievale, anche se ad oggi solo ventiquattro ne sono sopravvissute).Nel 2000 Bologna è stata Capitale europea della cultura.	Bologna	Bologna.jpg	\N
+15	Milano possiede un notevole tesoro artistico ripartito in più collezioni; la città è un centro estremamente vitale di mostre e di attività culturali, con iniziative e centri d'apprendimento legati alla storia e alla scienza.La Pinacoteca di Brera è la pinacoteca più celebre di Milano: ospita al suo interno una collezione che contiene le opere dei più importanti artisti del panorama italiano e internazionale, dal XIV al XX secolo. La più antica pinacoteca milanese è invece la Pinacoteca Ambrosiana, fondata nel XVII secolo dal cardinale Federico Borromeo assieme alla Biblioteca Ambrosiana. 	Milano	Milano.jpg	\N
+17	La forma del primo nucleo della città ricorda un piede e pertanto Palermo viene spesso definita Piede Fenicio[122]. Lo sviluppo urbanistico ha risentito delle varie dominazioni che si sono succedute nel corso dei secoli con una grande varietà di ambienti e scorci; in ultimo l'espansione recente ha reso il centro storico un luogo ben differenziato dalla cosiddetta Palermo Nuova.	Palermo	Palermo.jpg	\N
+18	Tra gli altri akragantini celebri si annoverano il filosofo Empedocle e l'atleta olimpico Esseneto, al quale è dedicato il moderno stadio cittadino.Lo scrittore agrigentino più famoso è Luigi Pirandello, insignito del premio Nobel per la letteratura nel 1934. Pirandello ambientò ad Agrigento novelle e romanzi.Il poeta Salvatore Quasimodo dedicò alla città di Agrigento le poesie "Strada di Agrigentum" e "Tempio di Zeus ad Agrigento".Nel 1987 la cantante Giuni Russo, dedicò alla città la canzone “Alla luna”. La canzone presenta espressioni in dialetto siciliano. 	Agrigento	Agrigento.jpg	\N
+24	Bari è il comune italiano ed europeo più popoloso che si affaccia sul Mare Adriatico, inoltre la città ha una solida tradizione mercantile-imprenditoriale e da sempre è punto nevralgico nell'ambito del commercio e dei contatti politico-culturali con il Medio Oriente. Il suo porto è il maggiore scalo passeggeri italiano del mare Adriatico. Dal 1930 si tiene a Bari la Fiera del Levante, tra le principali esposizioni fieristiche d'Italia. 	Bari	Bari.jpg	\N
+26	Nel Medioevo è stata un importantissimo centro artistico, culturale, commerciale, politico, economico e finanziario; nell'età moderna ha ricoperto il ruolo di capitale del Granducato di Toscana dal 1569 al 1859 che, col governo delle famiglie dei Medici e dei Lorena, divenne uno degli stati più ricchi e moderni d'Italia. Le varie vicissitudini politiche, la potenza finanziaria e mercantile e le influenze in ogni campo della cultura hanno fatto della città un crocevia fondamentale della storia italiana ed europea.	Firenze	Firenze.jpg	\N
+25	Il nome è antichissimo e deriva dall'etnonimo usato dai Latini per definire la terra abitata dagli Etruschi: "Etruria", trasformata poi in "Tuscia" e poi in "Toscana". Anche i confini della odierna Toscana corrispondono in linea di massima a quelli dell'Etruria antica, che comprendevano anche parti delle attuali regioni Lazio e Umbria, fino al Tevere.	Toscana	Toscana.jpg	\N
+27	Si inserisce nel territorio metropolitano con caratteristiche omogenee, denominato area pisana, che con i vicini comuni di Calci, Cascina, San Giuliano Terme, Vecchiano e Vicopisano, arriva a formare un sistema urbano di circa 195 000 abitanti distribuiti su 475 km²[6][7]. Inoltre, con un traffico superiore a 5 milioni di passeggeri nel 2017, Pisa ospita l'aeroporto più rilevante della Toscana, il Galileo Galilei.Nonostante le incertezze sull'origine della città nel corso della storia, si può affermare con certezza che Pisa fu fondata dagli Etruschi.	Pisa	Pisa.jpg	\N
+28	La città si trova nel nord della Francia, su un'ansa della Senna, posizione molto favorevole poiché fondamentale snodo di trasporti e traffici del continente europeo. In effetti, la posizione di Parigi al centro dei principali itinerari commerciali terrestri e fluviali le permise di diventare una delle città più influenti della Francia a partire dal X secolo, con la costruzione dei palazzi reali, di ricche abbazie e della celebre cattedrale di Notre-Dame.	Parigi	Parigi.jpg	\N
+29	Berlino è una delle capitali del cinema europeo[5][6][7] ed è considerata la capitale delle startup in Germania e centro internazionale emergente per fondatori di aziende innovative.[8] Nel 1988 fu nominata città europea della cultura. Dopo la caduta del muro (1989), Berlino è diventata un centro per le arti, il design, i media, la musica e la moda. Artisti e creativi si sono trasferiti in massa nella città di Berlino. L’alto numero di studenti e giovani ha aiutato. 	Berlino	Berlino.jpg	\N
+12	La regione denominata oggi Germania fu abitata da diversi popoli germanici, conosciuti e documentati già dal 100 a.C. A partire dal X secolo questi territori tedeschi hanno dato contributo alla parte centrale del Sacro Romano Impero che si protrasse sotto varie forme fino al 1806. Nel corso del XVI secolo, il nord della Germania divenne il centro della Riforma protestante. 	Germania	Germania.jpg	\N
+19	È situata nel Mediterraneo occidentale e il suo territorio coincide con l'arcipelago sardo, costituito quasi interamente dall'isola di Sardegna e da un considerevole numero di piccole isole e arcipelaghi circostanti. La sua posizione strategica[12] e la sua ricchezza di minerali[13] hanno favorito nell'antichità il suo popolamento e lo svilupparsi di traffici commerciali e scambi culturali tra i suoi abitanti e i popoli rivieraschi. 	Sardegna	Sardegna.jpg	\N
+2	La Francia è una repubblica costituzionale unitaria, avente un regime semipresidenziale. Parigi è la capitale, la lingua ufficiale è il francese, le monete ufficiali sono l'euro e il franco CFP nei territori dell'oceano Pacifico. Il motto della Francia è «Liberté, Égalité, Fraternité» e la bandiera è costituita da tre bande verticali di uguali dimensioni di colore blu, bianco e rosso. L'inno nazionale è La Marsigliese. 	Francia	Francia.jpg	\N
 \.
 
 
@@ -791,6 +794,17 @@ COPY public.prenotazioni (prenotazione_id, data, numero_giorni, num_posti, prezz
 26	2023-09-21	5	1	750	17	9	16	2	15
 27	2023-09-24	6	3	1500	17	9	17	7	18
 30	2023-09-24	6	2	760	19	9	17	2	18
+31	2023-10-20	6	1	620	35	14	61	7	63
+32	2023-10-20	6	1	1700	18	14	61	7	63
+33	2023-10-20	6	1	1700	18	14	61	7	63
+34	2023-10-20	6	1	1280	48	21	37	7	39
+35	2023-10-20	6	1	1280	48	21	37	7	39
+36	2023-10-20	6	1	1280	48	21	37	7	39
+37	2023-10-20	6	1	1280	48	21	37	7	39
+38	2023-10-20	6	1	1280	48	21	37	7	39
+39	2023-10-30	4	1	920	48	21	38	7	40
+40	2023-10-02	8	1	500	2	9	20	7	19
+41	2023-10-30	4	1	1200	18	14	62	7	64
 \.
 
 
@@ -810,6 +824,8 @@ COPY public.ratings (id, rate, alloggio_id, utente_id) FROM stdin;
 9	4	48	2
 10	2	49	2
 11	4	32	2
+12	5	18	7
+13	3	32	7
 \.
 
 
@@ -920,6 +936,9 @@ COPY public.trasporti (trasporto_id, data_arrivo, data_partenza, descrizione, du
 62	2023-10-30 02:30:00	2023-10-30 00:00:00	volo Roma Bologna	02:30:00	Fiumicino-G. Marconi	80	0	100
 63	2023-10-26 02:30:00	2023-10-26 00:00:00	volo Roma Bologna	02:30:00	G. Marconi-Fiumicino	80	0	100
 64	2023-11-03 02:30:00	2023-11-03 00:00:00	volo Roma Bologna	02:30:00	G. Marconi-Fiumicino	80	0	100
+65	2023-10-20 02:30:00	2023-10-20 00:00:00	volo Roma Milano	02:30:00	Fiumicino-Linate	80	0	100
+66	2023-10-30 02:30:00	2023-10-30 00:00:00	volo Roma Milano	02:30:00	Fiumicino-Linate	80	0	100
+67	2023-10-26 02:30:00	2023-10-26 00:00:00	volo Roma Milano	02:30:00	Linate-Fiumicino	80	0	100
 \.
 
 
@@ -1015,6 +1034,9 @@ alitalia	61	8	5	\N
 alitalia	62	8	5	\N
 alitalia	63	5	8	\N
 alitalia	64	5	8	\N
+alitalia	65	1	5	\N
+alitalia	66	1	5	\N
+alitalia	67	5	1	\N
 \.
 
 
@@ -1024,7 +1046,7 @@ alitalia	64	5	8	\N
 -- Name: acquisti_stazione_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.acquisti_stazione_id_seq', 7, true);
+SELECT pg_catalog.setval('public.acquisti_stazione_id_seq', 10, true);
 
 
 --
@@ -1051,7 +1073,7 @@ SELECT pg_catalog.setval('public.meta_meta_id_seq', 29, true);
 -- Name: prenotazioni_prenotazione_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.prenotazioni_prenotazione_id_seq', 30, true);
+SELECT pg_catalog.setval('public.prenotazioni_prenotazione_id_seq', 41, true);
 
 
 --
@@ -1060,7 +1082,7 @@ SELECT pg_catalog.setval('public.prenotazioni_prenotazione_id_seq', 30, true);
 -- Name: ratings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ratings_id_seq', 11, true);
+SELECT pg_catalog.setval('public.ratings_id_seq', 13, true);
 
 
 --
@@ -1078,7 +1100,7 @@ SELECT pg_catalog.setval('public.stazioni_stazione_id_seq', 18, true);
 -- Name: trasporti_trasporto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.trasporti_trasporto_id_seq', 64, true);
+SELECT pg_catalog.setval('public.trasporti_trasporto_id_seq', 67, true);
 
 
 --
@@ -1513,7 +1535,7 @@ ALTER TABLE ONLY public.acquisti
     ADD CONSTRAINT fksqumrbmcky50sa5r8ru85amrp FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id);
 
 
--- Completed on 2023-09-27 10:21:44 CEST
+-- Completed on 2023-09-27 22:34:04 CEST
 
 --
 -- PostgreSQL database dump complete

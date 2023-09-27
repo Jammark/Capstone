@@ -20,9 +20,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Destinazione extends MetaTuristica {
 
-	@Column(name = "contenuto_principale")
+	@Column(name = "contenuto_principale", length = 400)
 	private String contenutoPrincipale;
-	@Column(name = "contenuto_secondario")
+	@Column(name = "contenuto_secondario", length = 400)
 	private String contenutoSecondario;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "destinazione", cascade = CascadeType.PERSIST)
