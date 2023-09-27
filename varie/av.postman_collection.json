@@ -20,12 +20,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3014/auth/login",
+					"raw": "http://localhost:3018/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3014",
+					"port": "3018",
 					"path": [
 						"auth",
 						"login"
@@ -71,7 +71,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\":\"Roma\",\n    \"descrizione\":\"capitale italiana\",\n    \"imgUrl\": \"https://www.turismoroma.it/sites/default/files/Roma%20in%20breve.jpg\"\n}",
+					"raw": "{\n    \"nome\":\"Berlino\",\n    \"descrizione\":\"capitale tedesca\",\n    \"imgUrl\": \"https://static2-viaggi.corriereobjects.it/wp-content/uploads/2015/06/Berlino.jpg\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -110,7 +110,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -119,7 +119,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\" : \"Francia\",\n    \"descrizione\" : \"prova\",\n    \"contenutoPrincipale\": \"prova\",\n    \"contenutoSecondario\": \"prova\"\n}",
+					"raw": "{\n    \"nome\" : \"Toscana\",\n    \"descrizione\" : \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\",\n    \"contenutoPrincipale\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\",\n    \"contenutoSecondario\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\",\n    \"imgUrl\": \"https://a.cdn-hotels.com/gdcs/production52/d1546/67b6bd22-d759-4050-87e0-328c8e7ac9dc.jpg\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -127,12 +127,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3015/mete/destinazioni",
+					"raw": "http://localhost:3018/mete/destinazioni",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3015",
+					"port": "3018",
 					"path": [
 						"mete",
 						"destinazioni"
@@ -149,16 +149,16 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
 				},
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1\n}",
+					"raw": "{\n    \"id\": 28\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -189,7 +189,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -197,12 +197,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3016/mete/città",
+					"raw": "http://localhost:3018/mete/città",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3016",
+					"port": "3018",
 					"path": [
 						"mete",
 						"città"
@@ -214,10 +214,29 @@
 		{
 			"name": "list dest",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3018/mete/destinazioni",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"destinazioni"
+					]
 				}
 			},
 			"response": []
@@ -261,7 +280,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -270,7 +289,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Hotel K2\",\n    \"descrizione\": \"turismo montano\",\n    \"numStelle\" : 4,\n    \"numSingole\": 20,\n    \"numDoppie\": 30,\n    \"metaId\": 2,\n    \"prezzo\": 50.00,\n    \"urlImmagine\":\"https://www.google.com/imgres?imgurl=https%3A%2F%2Fantropocene.it%2Fwp-content%2Fuploads%2F2021%2F05%2FK2.jpg&tbnid=iSFAtwn_v_B-mM&vet=12ahUKEwi-6YHp6JqBAxVn8rsIHT1JCn0QMygGegQIARA8..i&imgrefurl=https%3A%2F%2Fantropocene.it%2F2021%2F05%2F05%2Fk2%2F&docid=3HjyvZ0-uQQL_M&w=1920&h=1080&q=k2&client=firefox-b-d&ved=2ahUKEwi-6YHp6JqBAxVn8rsIHT1JCn0QMygGegQIARA8\"\n}",
+					"raw": "{\n    \"nome\": \"Hotel BVenturo\",\n    \"descrizione\": \"turismo metropolitano\",\n    \"numStelle\" : 5,\n    \"numSingole\": 25,\n    \"numDoppie\": 30,\n    \"metaId\": 24,\n    \"prezzo\": 190.00,\n    \"urlImmagine\":\"https://citynews-cibotoday.stgy.ovh/~media/horizontal-hi/11429080508368/bventuno-hotel-bari.jpg\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -300,7 +319,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -309,7 +328,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"urlImmagine\":\"https://antropocene.it/wp-content/uploads/2021/05/K2.jpg\"\n}",
+					"raw": "{\n    \"urlImmagine\": \"https://www.hotelnavonacolors.it/data/1366/Navona-Colors-Boutique-Hotel-Roma-Foto-2023-Suite.jpg\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -317,7 +336,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3018/alloggi/hotels/2",
+					"raw": "http://localhost:3018/alloggi/hotels/18",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -326,7 +345,7 @@
 					"path": [
 						"alloggi",
 						"hotels",
-						"2"
+						"18"
 					]
 				}
 			},
@@ -340,7 +359,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -349,7 +368,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Appartamento5\",\n    \"descrizione\": \"turismo montano z\",\n    \"urlImmagine\": \"https://www.buttalapasta.it/wp-content/uploads/2016/01/hamburger-di-carne-americano.jpg\",\n    \"prezzo\": 60.00,\n    \"capienza\": 4,\n    \"metaId\": 2\n\n}",
+					"raw": "{\n    \"nome\": \"Bari Case vacanza\",\n    \"descrizione\": \"turismo metropolitano\",\n    \"urlImmagine\": \"https://cdn.hometogo.net/small/v1/06c/a69/79dfac126e645b52e704319334.jpg\",\n    \"prezzo\": 110.00,\n    \"capienza\": 5,\n    \"metaId\": 24\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -379,7 +398,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -388,7 +407,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"urlImmagine\": \"https://www.filippocoltro.it/ecms/image/lavori-arredamento.jpg\"\n}",
+					"raw": "{\n    \"urlImmagine\": \"https://media-cdn.tripadvisor.com/media/vr-splice-j/04/ba/a6/19.jpg\",\n    \"nome\":\"Roma case vacanza\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -396,7 +415,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3018/alloggi/appartamenti/3",
+					"raw": "http://localhost:3018/alloggi/appartamenti/19",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -405,7 +424,7 @@
 					"path": [
 						"alloggi",
 						"appartamenti",
-						"3"
+						"19"
 					]
 				}
 			},
@@ -414,10 +433,29 @@
 		{
 			"name": "list hotel",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3018/alloggi/hotels",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"hotels"
+					]
 				}
 			},
 			"response": []
@@ -425,10 +463,29 @@
 		{
 			"name": "list appartam",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzQ3MTI0LCJleHAiOjE2OTYzNTE5MjR9.-kY4e3AFdvhcHU6GrqjgdZz90dYfE7mOhCQm8uYNwvc",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3018/alloggi/appartamenti",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"alloggi",
+						"appartamenti"
+					]
 				}
 			},
 			"response": []
@@ -441,7 +498,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -450,7 +507,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Linate\",\n    \"località\":\"Milano\",\n    \"sigla\": \"LNTM\",\n    \"kmDistanza\": 40\n}",
+					"raw": "{\n    \"nome\": \"Brandemburg\",\n    \"località\":\"Berlino\",\n    \"sigla\": \"BER\",\n    \"kmDistanza\": 60,\n    \"cityId\": 29\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -519,7 +576,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NzE0ODMzLCJleHAiOjE2OTYzMTk2MzN9.-O_TuOWPosZNycS8eIE0SqizU_ByeU0bBK6GzptslE4",
 							"type": "string"
 						}
 					]
@@ -528,7 +585,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\n    {\n    \"nome\": \"Linate\",\n    \"località\":\"Milano\",\n    \"sigla\": \"LNTM\",\n    \"kmDistanza\": 40\n}\n",
+					"raw": "\n    {\n       \n        \"nome\": \"Linate\",\n        \"località\": \"Milano\",\n        \"sigla\": \"LIN\",\n        \"kmDistanza\": 30\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -568,10 +625,15 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Linate\",\n    \"località\":\"Milano\",\n    \"sigla\": \"LNTM\",\n    \"numStalli\": 7\n}"
+					"raw": "{\n    \n        \"nome\": \"Bologna centrale\",\n        \"località\": \"Bologna\",\n        \"sigla\": \"CTRBL\",\n        \"numeroStalli\": 8,\n    \"cityId\": 14\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://localhost:3018/stazioni/pulman/2",
+					"raw": "http://localhost:3018/stazioni/pulman/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -580,7 +642,7 @@
 					"path": [
 						"stazioni",
 						"pulman",
-						"2"
+						"7"
 					]
 				}
 			},
@@ -594,7 +656,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NjQ4Mzg0LCJleHAiOjE2OTYyNTMxODR9.3zXmwdZtxcJ6ZTLjQdDxjL989t2hk1DeBzKXPtdlR5k",
 							"type": "string"
 						}
 					]
@@ -619,10 +681,29 @@
 		{
 			"name": "lista stz pilman",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3018/stazioni/pulman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"stazioni",
+						"pulman"
+					]
 				}
 			},
 			"response": []
@@ -643,7 +724,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3018/stazioni/aereoporti/1",
+					"raw": "http://localhost:3018/stazioni/aereoporti/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -652,7 +733,7 @@
 					"path": [
 						"stazioni",
 						"aereoporti",
-						"1"
+						"3"
 					]
 				}
 			},
@@ -674,7 +755,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3018/stazioni/pulman/2",
+					"raw": "http://localhost:3018/stazioni/pulman/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -683,7 +764,7 @@
 					"path": [
 						"stazioni",
 						"pulman",
-						"2"
+						"4"
 					]
 				}
 			},
@@ -697,7 +778,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NjQ4Mzg0LCJleHAiOjE2OTYyNTMxODR9.3zXmwdZtxcJ6ZTLjQdDxjL989t2hk1DeBzKXPtdlR5k",
 							"type": "string"
 						}
 					]
@@ -706,7 +787,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\":\"Linate-Ciampino\",\n    \"descrizione\":\"volo Milano Roma\",\n    \"durata\": \"2:15\",\n    \"dataPartenza\": \"2020-4-16\",\n    \"dataArrivo\": \"2020-4-16\",\n    \"postiDisponibili\": 80,\n    \"compagnia\": \"air france\",\n    \"partenzaId\": 1,\n    \"arrivoId\": 2\n}",
+					"raw": "{\n    \"nome\":\"G. Marconi-Fiumicino\",\n    \"descrizione\":\"volo Roma Bologna\",\n    \"durata\": \"2:15\",\n    \"dataPartenza\": \"2023-11-03 0:00\",\n    \"dataArrivo\": \"2023-11-03 2:30\",\n    \"postiDisponibili\": 80,\n    \"compagnia\": \"alitalia\",\n    \"partenzaId\": 8,\n    \"arrivoId\": 5,\n    \"prezzo\": 100.00\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -714,7 +795,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3018/trasporti/aereoporti",
+					"raw": "http://localhost:3018/trasporti/voli",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -722,7 +803,7 @@
 					"port": "3018",
 					"path": [
 						"trasporti",
-						"aereoporti"
+						"voli"
 					]
 				}
 			},
@@ -775,7 +856,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NjQ4Mzg0LCJleHAiOjE2OTYyNTMxODR9.3zXmwdZtxcJ6ZTLjQdDxjL989t2hk1DeBzKXPtdlR5k",
 							"type": "string"
 						}
 					]
@@ -784,7 +865,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\":\"Linate-Ciampino\",\n    \"descrizione\":\"volo Milano Roma\",\n    \"durata\": \"2:15\",\n    \"dataPartenza\": \"2020-4-16\",\n    \"dataArrivo\": \"2020-4-16\",\n    \"postiDisponibili\": 80,\n    \"compagnia\": \"air france\",\n    \"partenzaId\": 1,\n    \"arrivoId\": 2,\n    \"stopId\": 4\n}",
+					"raw": "{\n    \n    \"postiDisponibili\": 90,\n    \"dataPartenza\": \"2023-10-02 0:00\",\n    \"dataArrivo\": \"2023-10-02 2:00\"\n   \n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -792,7 +873,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3018/trasporti/voli/2",
+					"raw": "http://localhost:3018/trasporti/voli/20",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -801,7 +882,7 @@
 					"path": [
 						"trasporti",
 						"voli",
-						"2"
+						"20"
 					]
 				}
 			},
@@ -855,7 +936,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NjQ4Mzg0LCJleHAiOjE2OTYyNTMxODR9.3zXmwdZtxcJ6ZTLjQdDxjL989t2hk1DeBzKXPtdlR5k",
 							"type": "string"
 						}
 					]
@@ -977,7 +1058,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NjQ4Mzg0LCJleHAiOjE2OTYyNTMxODR9.3zXmwdZtxcJ6ZTLjQdDxjL989t2hk1DeBzKXPtdlR5k",
 							"type": "string"
 						}
 					]
@@ -985,7 +1066,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3018/trasporti/voli/1",
+					"raw": "http://localhost:3018/trasporti/voli/13",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -994,7 +1075,7 @@
 					"path": [
 						"trasporti",
 						"voli",
-						"1"
+						"13"
 					]
 				}
 			},
@@ -1034,10 +1115,30 @@
 		{
 			"name": "cerca città",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3018/mete/città/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"mete",
+						"città",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -1214,7 +1315,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"rate\": 4,\n    \"alloggioId\": 2\n}",
+					"raw": "{\n    \"rate\": 5,\n    \"alloggioId\": 18\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1272,7 +1373,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1MDIyNzI1LCJleHAiOjE2OTU2Mjc1MjV9.MSDdbMgXNT5H9EDrsoV7s7vBappHoOkRF0RFL9QR9YU",
 							"type": "string"
 						}
 					]
@@ -1297,10 +1398,29 @@
 		{
 			"name": "riepilogo",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1MDIyNzI1LCJleHAiOjE2OTU2Mjc1MjV9.MSDdbMgXNT5H9EDrsoV7s7vBappHoOkRF0RFL9QR9YU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3018/prenotazioni/acquisti",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"prenotazioni",
+						"acquisti"
+					]
 				}
 			},
 			"response": []
@@ -1313,7 +1433,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0MDk4NTY1LCJleHAiOjE2OTQ3MDMzNjV9.Ph7nurIvMoQ5BTeyRZQoryUevhzChyJgKlf9TJNxAMI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1MzkxOTYzLCJleHAiOjE2OTU5OTY3NjN9.TvgU2sQwGO-GNNV5VIFgH6KQgm2_h1TyF0mLhRu2raQ",
 							"type": "string"
 						}
 					]
@@ -1322,7 +1442,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"data\": \"2020-4-30\",\n    \"numeroGiorni\": 10,\n    \"metaId\": 4,\n    \"alloggioId\" : 2,\n    \"trasportoId\" : 4,\n    \"prezzo\" : 400.00,\n    \"numeroPosti\": 4\n\n}",
+					"raw": "{\n    \"data\": \"2023-9-24\",\n    \"dataFine\":\"2023-9-30\",\n    \"numeroGiorni\": 6,\n    \"metaId\": 9,\n    \"alloggioId\" : 19,\n    \"trasportoId\" : 17,\n    \"ritornoId\" : 18,\n    \"prezzo\" : 400.00,\n    \"numeroPosti\": 2\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1359,7 +1479,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3018/prenotazioni/acquisti/3",
+					"raw": "http://localhost:3018/prenotazioni/acquisti/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1368,7 +1488,7 @@
 					"path": [
 						"prenotazioni",
 						"acquisti",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -1390,7 +1510,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3018/mete/città/1",
+					"raw": "http://localhost:3018/mete/città/13",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1399,7 +1519,7 @@
 					"path": [
 						"mete",
 						"città",
-						"1"
+						"13"
 					]
 				}
 			},
@@ -1501,10 +1621,44 @@
 		{
 			"name": "cerca voli",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1MzkxOTYzLCJleHAiOjE2OTU5OTY3NjN9.TvgU2sQwGO-GNNV5VIFgH6KQgm2_h1TyF0mLhRu2raQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3018/trasporti/voli/cerca?partenza=Milano&arrivo=Roma&data=2023-10-02",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3018",
+					"path": [
+						"trasporti",
+						"voli",
+						"cerca"
+					],
+					"query": [
+						{
+							"key": "partenza",
+							"value": "Milano"
+						},
+						{
+							"key": "arrivo",
+							"value": "Roma"
+						},
+						{
+							"key": "data",
+							"value": "2023-10-02"
+						}
+					]
 				}
 			},
 			"response": []
@@ -1525,7 +1679,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3018/trasporti/tratte/cerca?partenza=Roma&arrivo=Milano&data=2020-10-15",
+					"raw": "http://localhost:3018/trasporti/tratte/cerca?partenza=Roma&arrivo=Bologna&data=2020-8-16",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1543,11 +1697,11 @@
 						},
 						{
 							"key": "arrivo",
-							"value": "Milano"
+							"value": "Bologna"
 						},
 						{
 							"key": "data",
-							"value": "2020-10-15"
+							"value": "2020-8-16"
 						}
 					]
 				}
@@ -1562,7 +1716,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1MDIyNzI1LCJleHAiOjE2OTU2Mjc1MjV9.MSDdbMgXNT5H9EDrsoV7s7vBappHoOkRF0RFL9QR9YU",
 							"type": "string"
 						}
 					]
@@ -1624,7 +1778,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk0NDI1MzM0LCJleHAiOjE2OTUwMzAxMzR9.J6q1-DGUQ6nd-z-I191ixdzhKCJJIIl8jL00XCKj7YA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjk1NjQ4Mzg0LCJleHAiOjE2OTYyNTMxODR9.3zXmwdZtxcJ6ZTLjQdDxjL989t2hk1DeBzKXPtdlR5k",
 							"type": "string"
 						}
 					]
@@ -1632,7 +1786,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3018/prenotazioni/4",
+					"raw": "http://localhost:3018/prenotazioni/9",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1640,7 +1794,7 @@
 					"port": "3018",
 					"path": [
 						"prenotazioni",
-						"4"
+						"9"
 					]
 				}
 			},

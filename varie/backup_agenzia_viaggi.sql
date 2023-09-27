@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3
 -- Dumped by pg_dump version 15.3
 
--- Started on 2023-09-26 16:12:02 CEST
+-- Started on 2023-09-27 10:21:43 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -638,19 +638,19 @@ COPY public.appartamenti (capienza, alloggio_id) FROM stdin;
 4	12
 4	14
 4	15
-4	22
-4	23
-4	26
-6	29
-5	32
-5	35
-5	38
-5	41
-6	44
-4	47
-4	50
-5	53
 0	19
+0	32
+0	22
+0	23
+0	26
+0	29
+0	35
+0	38
+0	41
+0	44
+0	47
+0	50
+0	53
 \.
 
 
@@ -809,6 +809,7 @@ COPY public.ratings (id, rate, alloggio_id, utente_id) FROM stdin;
 3	2	18	2
 9	4	48	2
 10	2	49	2
+11	4	32	2
 \.
 
 
@@ -1059,7 +1060,7 @@ SELECT pg_catalog.setval('public.prenotazioni_prenotazione_id_seq', 30, true);
 -- Name: ratings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.ratings_id_seq', 10, true);
+SELECT pg_catalog.setval('public.ratings_id_seq', 11, true);
 
 
 --
@@ -1512,7 +1513,7 @@ ALTER TABLE ONLY public.acquisti
     ADD CONSTRAINT fksqumrbmcky50sa5r8ru85amrp FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id);
 
 
--- Completed on 2023-09-26 16:12:02 CEST
+-- Completed on 2023-09-27 10:21:44 CEST
 
 --
 -- PostgreSQL database dump complete
