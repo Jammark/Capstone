@@ -16,9 +16,9 @@ public class HotelPayload extends AlloggioPayload {
 
 	private Integer numStelle;
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private int numSingole;
+	private Integer numSingole;
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private int numDoppie;
+	private Integer numDoppie;
 
 	public HotelPayload(Hotel h) {
 		super(h);

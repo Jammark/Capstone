@@ -98,6 +98,7 @@ public class PrenotazioneService {
 		if (!dispVoli) {
 			throw new BadRequestException("Posti non disponibili per i voli.");
 		}
+		log.info("ricevuta richiesta prenotazione: " + pp);
 		Long g = ChronoUnit.DAYS.between(pp.getData(), pp.getDataFine());
 		Alloggio al = aSrv.findById(pp.getAlloggioId());
 		Prenotazione p = new Prenotazione(pp.getData(), g.intValue(), Optional.ofNullable(al.getMeta()).orElse(null),
@@ -109,7 +110,7 @@ public class PrenotazioneService {
 						+ (p.getTrasporto().getPrezzo() + p.getRitorno().getPrezzo()) * p.getNumeroPosti());
 		
 		if(p.getAlloggio() instanceof Appartamento a && a.getCapienza() < p.getNumeroPosti()) {
-			throw new IllegalArgumentException("Capienza appartamento non sufficiente: "+a);
+			throw new IllegalArgumentException("Capienza appartamento non sufficiente: " + a.getCapienza());
 		}else if(p.getAlloggio() instanceof Hotel h && !h.isDisponibile(p.getNumeroPosti())) {
 			throw new IllegalArgumentException("Posti hotel non disponibili: "+ h);
 		}

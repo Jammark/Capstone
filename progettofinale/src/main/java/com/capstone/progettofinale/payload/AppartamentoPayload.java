@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class AppartamentoPayload extends AlloggioPayload {
 
-	private int capienza;
+	private Integer capienza;
 
 	public AppartamentoPayload(Appartamento a) {
 		super(a);

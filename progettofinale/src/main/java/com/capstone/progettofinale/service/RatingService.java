@@ -81,13 +81,13 @@ public class RatingService {
 			throw new IllegalArgumentException("valore rate non valido min 0 max 5; val: " + rate);
 	}
 
-	public List<Rating> findByAlloggi(List<Long> alloggiIds, long userId) {
-		return this.repo.findByUserIdAndAlloggioIdIn(userId,
+	public List<Rating> findByAlloggi(List<Long> alloggiIds) {
+		return this.repo.findByAlloggioIdIn(
 				Set.of(alloggiIds.stream().toArray(Long[]::new)));
 	}
 
 	public void setRatings(List<? extends AlloggioPayload> alloggi) {
-		List<Rating> ratings = this.findByAlloggi(alloggi.stream().map(AlloggioPayload::getId).toList(), getUserId());
+		List<Rating> ratings = this.findByAlloggi(alloggi.stream().map(AlloggioPayload::getId).toList());
 		alloggi.forEach(a -> {
 			List<Integer> lista = ratings.stream().filter(r -> r.getAlloggio().getId().equals(a.getId()))
 					.map(Rating::getRate).toList();
