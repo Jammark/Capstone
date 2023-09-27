@@ -17,3 +17,7 @@ prima di avvia re l'applicazione eseguire il test di JUnit ProgettofinaleApplica
 
 1. jackson
 2. apache commons io
+
+# funzionalità
+
+Applicazione web che permette di consultare un catalogo di mete turistiche e prenotare camere, alloggi e voli per le proprie vacanze; è inoltre possibile votare gli hotel e gli appartamenti, verificare le prenotazioni effettuate ed acquistarle. In più le mete più gettonate sono disponibili per shortcut con a disposizione pacchetti viaggio last minute.
