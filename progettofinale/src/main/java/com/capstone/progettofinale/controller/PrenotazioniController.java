@@ -1,5 +1,6 @@
 package com.capstone.progettofinale.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class PrenotazioniController {
 	public ResponseEntity<List<PrenotazionePayload>> getSaldo() {
 		List<Prenotazione> lista = pSrv.findDaPagare();
 		if (lista.isEmpty()) {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<List<PrenotazionePayload>>(Collections.EMPTY_LIST, HttpStatus.NOT_FOUND);
 		} else {
 			return ResponseEntity.ofNullable(lista.stream().map(PrenotazionePayload::new).toList());
 		}
