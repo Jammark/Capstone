@@ -29,3 +29,9 @@ Le date dei voli disponibili sono:
 1. partenze in date 2023-10-20 e 2023-10-30
 2. ritorni in date 2023-10-26 e 2023-11-03
 per tutte le mete
+
+# utenti e ruoli
+
+Utilizzare l'utente con ruolo admin:
+- username: super.admin@test.com
+- password: 1234
