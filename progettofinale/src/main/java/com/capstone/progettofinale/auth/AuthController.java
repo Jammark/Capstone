@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AuthController {
 	
+
 	@Autowired
 	UserService usersService;
 
@@ -63,7 +64,8 @@ public class AuthController {
 	@PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public LoginSuccessfullPayload login(@Valid @RequestBody UserLoginPayload body) {
 
-
+		log.info("username: " + body.getEmail());
+		log.info("password: " + body.getPassword());
 		User user = usersService.findByUsername(body.getEmail());
 
 
